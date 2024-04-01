@@ -1,3 +1,7 @@
 .Home {
-	
+    margin: 50px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
 }

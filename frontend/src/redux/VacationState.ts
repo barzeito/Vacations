@@ -9,8 +9,6 @@ export class VacationsState {
 // 2. Action Type
 export enum VacationsActionType {
     SetVacations = 'SetVacations',
-    DeleteProduct = 'DeleteProduct',
-    UpdateProduct = 'UpdateProduct',
     addVacation = 'AddVacation',
 }
 
@@ -33,17 +31,6 @@ export function vacationsReducer(currentState = new VacationsState(), action: Va
             const singleVacation = action.payload as VacationModel;
             newState.vacations.push(singleVacation);
             break;
-        case VacationsActionType.DeleteProduct:
-            const productId = action.payload as number;
-            const indexToDelete = newState.vacations.findIndex(vacation => vacation.vacationId === productId);
-            if (indexToDelete !== -1) newState.vacations.splice(indexToDelete, 1);
-            break;
-        case VacationsActionType.UpdateProduct:
-            const productToUpdate = action.payload as VacationModel;
-            const indexToUpdate = newState.vacations.findIndex(vacation => vacation.vacationId === productToUpdate.vacationId);
-            if (indexToUpdate !== -1) newState.vacations[indexToUpdate] = productToUpdate;
-            break;
-
     }
 
     return newState;

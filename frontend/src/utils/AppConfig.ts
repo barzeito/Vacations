@@ -4,6 +4,7 @@ class AppConfig {
     public loginUrl = `${this.apiBaseUrl}/api/login`;
     public signupUrl = `${this.apiBaseUrl}/api/signup`;
     public usersUrl = `${this.apiBaseUrl}/api/users`;
+    public followUrl = `${this.apiBaseUrl}/api/followers`;
     public successNotificationDuration = 2000;
     public errorNotificationDuration = 6000;
 }

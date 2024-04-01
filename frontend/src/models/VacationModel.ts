@@ -1,5 +1,5 @@
 class VacationModel {
-    public vacationId?: number;
+    public vacationId?: string;
     public destination?: string;
     public description?: string;
     public startDate?: string;

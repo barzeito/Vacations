@@ -1,5 +1,9 @@
 import DTO from './dto';
 
 export default interface Model {
-    loremIpsum(loremIpsum: DTO): Promise<DTO>;
+    getAll(): Promise<DTO[]>
+    getOne(id: string): Promise<DTO>;
+    follow(follower: DTO): Promise<DTO>;
+    unFollow(id: string): Promise<boolean>;
+
 }

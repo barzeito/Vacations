@@ -1,6 +1,6 @@
 import Model from "./model";
-import loremIpsum from "./mysql";
+import followers from "./mysql";
 
 export default function getModel(): Model {
-    return loremIpsum;
+    return followers;
 }

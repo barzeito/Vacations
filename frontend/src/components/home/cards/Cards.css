@@ -1,0 +1,58 @@
+.Cards {
+    margin: 50px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
+    border: 1px solid red;
+}
+
+.Card {
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+.cardTop {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cardName {
+    margin: 0 10px;
+    color: rgb(111, 107, 107);
+}
+
+.cardDates {
+    background-color: #2D8FCD;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.cardDescription {
+    background-color: white;
+    color: rgb(111, 107, 107);
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.cardPrice {
+    background-color: #2D8FCD;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin: 10px auto;
+    border-radius: 5px;
+    width: 50%;
+}

@@ -1,0 +1,119 @@
+.Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.LoginContainer {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 62.5rem;
+}
+
+.LoginForm {
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.LoginForm h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.LoginForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.LoginForm input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.LoginForm button {
+    width: 80%;
+    padding: 10px;
+    background-color: #2D8FCD;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0.625rem 0 0 1.875rem;
+}
+
+.LoginForm button:hover {
+    background-color: #0e5a9c;
+}
+
+.LoginForm .account {
+    text-align: center;
+    margin: 10px;
+}
+
+.LoginForm .link {
+    text-decoration: none;
+    font-weight: 540;
+    color: black;
+}
+
+.LoginForm .link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.LoginText {
+    width: 50%;
+    padding: 20px;
+    margin-left: 150px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.LoginText h3 {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color: #0e5a9c;
+}
+
+.LoginText p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.Login span {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .LoginContainer {
+        flex-direction: column;
+    }
+
+    .LoginForm,
+    .LoginText {
+        width: 100%;
+        margin: 0;
+    }
+
+    .LoginForm button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .LoginText {
+        margin-top: 20px;
+    }
+}

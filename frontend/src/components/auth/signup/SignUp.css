@@ -1,0 +1,82 @@
+.SignUp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.SignUp .SignUpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    max-width: 62.5rem;
+}
+
+.SignUp .SignUpForm {
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.SignUp .SignUpForm h2 {
+    font-size: 35px;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.SignUp .SignUpForm label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.SignUp .SignUpForm input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.SignUp .SignUpForm button {
+    width: 80%;
+    padding: 10px;
+    background-color: #2D8FCD;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0.625rem 0 0 1.875rem;
+}
+
+.SignUp .SignUpForm button:hover {
+    background-color: #0e5a9c;
+}
+
+.SignUp .SignUpForm span {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.SignUpForm .account {
+    text-align: center;
+    margin: 10px;
+}
+
+.SignUpForm .link {
+    text-decoration: none;
+    font-weight: 540;
+    color: black;
+}
+
+.SignUpForm .link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

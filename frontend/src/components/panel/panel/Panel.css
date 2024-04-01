@@ -1,0 +1,105 @@
+/* AdminPanel.css */
+
+.Panel {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navBar,
+.AnaCard {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.navBar {
+    width: 250px;
+    height: 450px;
+    overflow-y: auto;
+}
+
+.navBar h2 {
+    margin-top: 0;
+}
+
+.navBar .roleName {
+    font-size: 12px;
+    color: #777;
+    margin: -20px 0 20px 0;
+}
+
+.navBar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.navBar ul li {
+    margin-bottom: 10px;
+}
+
+.navBar ul li a {
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+}
+
+.navBar ul li a:hover {
+    text-decoration: underline;
+}
+
+.AnaContent {
+    flex: 1;
+    padding: 20px;
+}
+
+.AnaHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.AnaTitle {
+    margin: 0;
+}
+
+.AnaStats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statCard {
+    background-color: #2D8FCD;
+    color: #fff;
+    border-radius: 10px;
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.statCard p {
+    font-size: 24px;
+    margin: 0;
+
+}
+
+.statCard span {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+}

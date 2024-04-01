@@ -1,0 +1,73 @@
+.AuthMenu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 5px;
+}
+
+
+.AuthMenu .Guest {
+    display: flex;
+    align-items: center;
+}
+
+.AuthMenu .Title {
+    margin-right: 10px;
+    font-weight: 540;
+}
+
+
+.AuthMenu a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.AuthMenu a:hover {
+    text-decoration: underline;
+}
+
+
+.BurgerMenu {
+    display: none;
+    cursor: pointer;
+}
+
+.BurgerLine {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.MenuItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+    .BurgerMenu {
+        display: block;
+    }
+
+    .MenuItems {
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+        z-index: 1000;
+    }
+
+    .MenuItems.open {
+        display: flex;
+    }
+}

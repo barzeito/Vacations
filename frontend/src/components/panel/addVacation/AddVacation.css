@@ -1,0 +1,53 @@
+.AddVacation {
+    display: flex;
+    align-items: center;
+}
+
+.FormContent {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 25rem;
+    margin: 50px auto;
+}
+
+.FormContent label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.FormContent input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.FormContent button {
+    background-color: #2D8FCD;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 9.375rem;
+}
+
+.FormContent button:hover {
+    background-color: #0056b3;
+}
+
+.FormHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.FormTitle {
+    margin: 0;
+}

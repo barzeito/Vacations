@@ -57,7 +57,7 @@ function Login(): JSX.Element {
                 </div>
                 <div className="LoginText">
                     <h3>Welcome to Vacations</h3>
-                    <p>Vacations let you to find your best destination for your next vacation.</p>
+                    <p>Vacations let you to find the best destination for your next vacation.</p>
                 </div>
             </div>
         </div>

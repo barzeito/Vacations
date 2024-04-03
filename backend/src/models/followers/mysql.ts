@@ -37,7 +37,7 @@ class Followers implements Model {
     public async unFollow(id: string): Promise<boolean> {
         const result: OkPacketParams = await query(`
             DELETE FROM followers
-            WHERE       userId = ?
+            WHERE       vacationId = ?
         `, [id]);
         return Boolean(result.affectedRows);
     }

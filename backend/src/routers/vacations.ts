@@ -13,6 +13,6 @@ router.get('/:id', getOne);
 router.post('/', addImageToBody, validate(addVacationValidator), uploadImage, add);
 router.put('/:id', addImageToBody, update);
 router.patch('/:id', addImageToBody, uploadImage, patch);
-router.delete('/:id', enforceAdmin, remove);
+router.delete('/:id', remove);
 
 export default router;

@@ -28,9 +28,15 @@ export function followReducer(currentState = new FollowState(), action: FollowAc
             newState.followers = action.payload as FollowModel[];
             break;
         case FollowActionType.deleteFollow:
-            const singleVacation = action.payload as FollowModel;
-            newState.followers.push(singleVacation);
+            const followerVacationId = action.payload as string;
+            if (Array.isArray(newState.followers)) {
+                const indexToDelete = newState.followers.findIndex(follower => follower.vacationId === followerVacationId);
+                if (indexToDelete !== -1) {
+                    newState.followers.splice(indexToDelete, 1);
+                }
+            }
             break;
+
     }
 
     return newState;

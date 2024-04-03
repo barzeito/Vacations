@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import "./AddVacation.css";
 import { useForm } from "react-hook-form";
 import VacationModel from "../../../models/VacationModel";
@@ -8,7 +7,7 @@ import PanelNavigation from "../navigation/Navigation";
 
 function AddVacation(): JSX.Element {
 
-    const { register, handleSubmit, formState, setValue } = useForm<VacationModel>();
+    const { register, handleSubmit, setValue } = useForm<VacationModel>();
 
     async function submitVacation(vacation: VacationModel) {
         try {
@@ -28,16 +27,6 @@ function AddVacation(): JSX.Element {
 
     return (
         <div className="AddVacation">
-            {/* <div className="navBar">
-                <h2>Hey User</h2>
-                <p className="roleName">Admin</p>
-                <ul>
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="">Dashboard</NavLink></li>
-                    <li><NavLink to="/panel/add">Add Vacation</NavLink></li>
-                    <li><NavLink to="">Edit Vacation</NavLink></li>
-                </ul>
-            </div> */}
             <PanelNavigation />
             <div className="FormContent">
                 <div className="FormHeader">

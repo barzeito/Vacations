@@ -28,7 +28,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
             const user = jwtDecode<{ user: User }>(token).user;
             setUser(user);
         }
-    });
+    }, []);
 
     async function handleLike(event: React.ChangeEvent<HTMLInputElement>) {
         const follower: FollowModel = {
@@ -37,9 +37,17 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         };
 
         try {
-            await followService.follow(follower);
-            notifyService.success(`Liked.`);
-            setLiked(event.target.checked);
+            if (liked) {
+                const vacationId = props.vacation.vacationId;
+                if (vacationId) {
+                    await followService.unFollow(vacationId);
+                    notifyService.success(`UnLiked.`);
+                }
+            } else {
+                await followService.follow(follower);
+                notifyService.success(`Liked.`);
+            }
+            setLiked(!liked);
         } catch (err) {
             notifyService.error(err);
         }
@@ -53,7 +61,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
                         <input type="checkbox" checked={liked} onChange={handleLike} />
                         {liked ? 'Liked' : 'Like'}
                     </label>
-                    <img src={props.vacation.imageUrl} className="cardImage"></img>
+                    <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
                     <div className="cardName">{props.vacation.destination}</div>
                     <div className="cardDates">{props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>
                 </div>

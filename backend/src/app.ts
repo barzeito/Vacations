@@ -16,8 +16,8 @@ import path from "path";
 //TODO: validation for vacation add/update/patch
 
 const server = express();
-server.use(authentication);
 server.use(cors());
+server.use(authentication);
 server.use(express.json());
 server.use(expressFileUpload());
 

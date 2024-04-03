@@ -17,7 +17,7 @@ function PanelNavigation(): JSX.Element {
             const user = jwtDecode<{ user: User }>(token).user;
             setUser(user);
         }
-    });
+    }, []);
 
     return (
         <div className="Navigation">

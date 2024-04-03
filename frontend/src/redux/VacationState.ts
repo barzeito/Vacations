@@ -9,11 +9,12 @@ export class VacationsState {
 // 2. Action Type
 export enum VacationsActionType {
     SetVacations = 'SetVacations',
-    addVacation = 'AddVacation',
+    AddVacation = 'AddVacation',
+    DeleteVacation = 'DeleteVacation'
 }
 
 // 3. Action Object
-export type VacationPayload = VacationModel[] | VacationModel | number;
+export type VacationPayload = VacationModel[] | VacationModel | number | string;
 export interface VacationsAction {
     type: VacationsActionType,
     payload: VacationPayload
@@ -27,9 +28,14 @@ export function vacationsReducer(currentState = new VacationsState(), action: Va
         case VacationsActionType.SetVacations:
             newState.vacations = action.payload as VacationModel[];
             break;
-        case VacationsActionType.addVacation:
+        case VacationsActionType.AddVacation:
             const singleVacation = action.payload as VacationModel;
             newState.vacations.push(singleVacation);
+            break;
+        case VacationsActionType.DeleteVacation:
+            const vacationId = action.payload as string;
+            const indexToDelete = newState.vacations.findIndex(vacation => vacation.vacationId === vacationId);
+            if (indexToDelete !== -1) newState.vacations.splice(indexToDelete, 1);
             break;
     }
 

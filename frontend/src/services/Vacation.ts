@@ -28,13 +28,21 @@ class VacationService {
         const response = await axios.post<VacationModel>(appConfig.vacationsUrl, vacation, config);
         const addedVacation = response.data;
         const action: VacationsAction = {
-            type: VacationsActionType.addVacation,
+            type: VacationsActionType.AddVacation,
             payload: addedVacation
         }
         vacationsStore.dispatch(action);
         return addedVacation;
     }
 
+    public async deleteVacation(id: string): Promise<void> {
+        await axios.delete(appConfig.vacationsUrl + `/${id}`);
+        const action: VacationsAction = {
+            type: VacationsActionType.DeleteVacation,
+            payload: id
+        }
+        vacationsStore.dispatch(action);
+    }
 }
 const vacationService = new VacationService();
 export default vacationService;

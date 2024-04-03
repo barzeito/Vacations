@@ -1,6 +1,5 @@
 import axios from "axios";
 import appConfig from "../utils/AppConfig";
-import LoginModel from "../models/LoginModel";
 import FollowModel from "../models/FollowModel";
 import { FollowAction, FollowActionType, followStore } from "../redux/FollowState";
 
@@ -15,6 +14,15 @@ class FollowService {
         followStore.dispatch(action);
 
         return addedFollow;
+    }
+
+    public async unFollow(vacationId: string): Promise<void> {
+        await axios.delete(appConfig.followUrl + `/${vacationId}`);
+        const action: FollowAction = {
+            type: FollowActionType.deleteFollow,
+            payload: vacationId
+        }
+        followStore.dispatch(action);
     }
 
     public async getLiked(userId: string): Promise<FollowModel[]> {

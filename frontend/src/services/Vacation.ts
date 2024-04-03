@@ -19,6 +19,17 @@ class VacationService {
         return vacations;
     }
 
+    public async getOne(id: string): Promise<VacationModel | undefined> {
+        let vacations = vacationsStore.getState().vacations;
+        let vacation = vacations.find(v => v.vacationId === id);
+        if (!vacation) {
+            await this.getAll();
+            vacations = vacationsStore.getState().vacations;
+            vacation = vacations.find(v => v.vacationId === id);
+        }
+        return vacation;
+    }
+
     public async addVacation(vacation: VacationModel): Promise<VacationModel> {
         const config = {
             headers: {
@@ -42,6 +53,22 @@ class VacationService {
             payload: id
         }
         vacationsStore.dispatch(action);
+    }
+
+    public async editVacation(vacation: VacationModel): Promise<VacationModel> {
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/from-date'
+            }
+        }
+        const response = await axios.patch<VacationModel>(appConfig.vacationsUrl + `/${vacation.vacationId}`, vacation, config);
+        const updatedVacation = response.data;
+        const action: VacationsAction = {
+            type: VacationsActionType.UpdateVacation,
+            payload: updatedVacation
+        }
+        vacationsStore.dispatch(action);
+        return updatedVacation;
     }
 }
 const vacationService = new VacationService();

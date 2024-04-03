@@ -10,6 +10,7 @@ export class VacationsState {
 export enum VacationsActionType {
     SetVacations = 'SetVacations',
     AddVacation = 'AddVacation',
+    UpdateVacation = 'UpdateVacation',
     DeleteVacation = 'DeleteVacation'
 }
 
@@ -36,6 +37,11 @@ export function vacationsReducer(currentState = new VacationsState(), action: Va
             const vacationId = action.payload as string;
             const indexToDelete = newState.vacations.findIndex(vacation => vacation.vacationId === vacationId);
             if (indexToDelete !== -1) newState.vacations.splice(indexToDelete, 1);
+            break;
+        case VacationsActionType.UpdateVacation:
+            const vacationToUpdate = action.payload as VacationModel;
+            const indexToUpdate = newState.vacations.findIndex(vacation => vacation.vacationId === vacationToUpdate.vacationId);
+            if (indexToUpdate !== -1) newState.vacations[indexToUpdate] = vacationToUpdate;
             break;
     }
 

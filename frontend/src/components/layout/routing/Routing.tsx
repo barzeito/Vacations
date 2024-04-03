@@ -6,6 +6,7 @@ import Login from "../../auth/login/Login";
 import Panel from "../../panel/panel/Panel";
 import AddVacation from "../../panel/addVacation/AddVacation";
 import EditVacation from "../../panel/editVacation/EditVacation";
+import EditVacationPanel from "../../panel/editVacationPanel/EditVacationPanel";
 
 
 function Routing(): JSX.Element {
@@ -23,6 +24,7 @@ function Routing(): JSX.Element {
             <Route path="/panel" element={<Panel />} />
             <Route path="/panel/add" element={<AddVacation />} />
             <Route path="/panel/edit" element={<EditVacation />} />
+            <Route path="/panel/edit/:vacationId" element={<EditVacationPanel />} />
 
 
             <Route path="/" element={<Navigate to="/home" />} />

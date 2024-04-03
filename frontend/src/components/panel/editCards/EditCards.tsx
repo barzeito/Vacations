@@ -4,6 +4,7 @@ import formatPrice from "../../../utils/formatPrice";
 import "./EditCards.css";
 import vacationService from "../../../services/Vacation";
 import notifyService from "../../../services/Notify";
+import { NavLink } from "react-router-dom";
 
 interface vacationsCardsProps {
     vacation: VacationModel
@@ -11,10 +12,11 @@ interface vacationsCardsProps {
 
 function EditCards(props: vacationsCardsProps): JSX.Element {
 
+    const vacationId = props.vacation.vacationId;
+
     async function deleteVacation(): Promise<void> {
-        if (window.confirm('are you sure?')) {
+        if (window.confirm('Are you sure you want to delete this Vacation?')) {
             try {
-                const vacationId = props.vacation.vacationId;
                 if (vacationId) {
                     await vacationService.deleteVacation(vacationId);
                     notifyService.success('Vacation deleted successfully');
@@ -29,7 +31,7 @@ function EditCards(props: vacationsCardsProps): JSX.Element {
             <div className="EditCard">
                 <div className="EditCardTop">
                     <div className="EditOptions">
-                        <button className="Edit">Edit</button>
+                        <NavLink to={`/panel/edit/${vacationId}`} className="Edit">Edit</NavLink>
                         <button className="Delete" onClick={deleteVacation}>Delete</button>
                     </div>
                     <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>

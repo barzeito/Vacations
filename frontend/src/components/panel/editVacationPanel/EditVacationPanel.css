@@ -1,0 +1,60 @@
+.EditVacationPanel {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    /* Adjust width as needed */
+    margin: 10px auto;
+    /* Center horizontally */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.EditVacationPanel h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.EditVacationPanel form {
+    display: flex;
+    flex-direction: column;
+}
+
+.EditVacationPanel label {
+    margin-bottom: 5px;
+}
+
+.EditVacationPanel input[type="text"],
+.EditVacationPanel textarea,
+.EditVacationPanel input[type="date"],
+.EditVacationPanel input[type="number"],
+.EditVacationPanel input[type="file"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.EditVacationPanel textarea {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 100px;
+    resize: vertical;
+}
+
+.EditVacationPanel button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.EditVacationPanel button:hover {
+    background-color: #0056b3;
+}

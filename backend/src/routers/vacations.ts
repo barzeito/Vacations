@@ -11,8 +11,8 @@ const router = Router();
 router.get('/', getAll);
 router.get('/:id', getOne);
 router.post('/', addImageToBody, validate(addVacationValidator), uploadImage, add);
-router.put('/:id', addImageToBody, update);
+router.put('/:id', addImageToBody, uploadImage, update);
 router.patch('/:id', addImageToBody, uploadImage, patch);
-router.delete('/:id', remove);
+router.delete('/:id', enforceAdmin, remove);
 
 export default router;

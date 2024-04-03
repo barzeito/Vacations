@@ -11,9 +11,8 @@ import vacationRouter from './routers/vacations';
 import expressFileUpload from 'express-fileupload';
 import path from "path";
 
-//TODO: Check Auth (All functions)
-//TODO: Check Vacation (All functions)/ Fix update[PUT]
 //TODO: validation for vacation add/update/patch
+//TODO: Fix getFollows, followsCounter
 
 const server = express();
 server.use(cors());

@@ -9,6 +9,8 @@ import notifyService from "../../../services/Notify";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
 
+//TODO: Fix followsCounter and fix like button when it not shows as liked
+
 interface vacationsCardsProps {
     vacation: VacationModel
 }
@@ -29,6 +31,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
             setUser(user);
         }
     }, []);
+
 
     async function handleLike(event: React.ChangeEvent<HTMLInputElement>) {
         const follower: FollowModel = {

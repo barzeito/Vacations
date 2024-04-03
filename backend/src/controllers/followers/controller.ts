@@ -23,6 +23,16 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
+export const getFollows = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const follows = await getModel().getFollows(req.params.id);
+        if (!follows) return next();
+        res.json(follows);
+    } catch (err) {
+        next(err)
+    }
+}
+
 export const add = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const addedFollower = await getModel().follow(req.body);
@@ -41,3 +51,14 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
         next(err)
     }
 }
+
+export const followsCounter = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const followers = await getModel().followsCounter(req.params.id);
+        if (!followers) return next();
+        res.json(followers);
+    } catch (err) {
+        next(err)
+    }
+}
+

@@ -6,4 +6,6 @@ export default interface Model {
     login(credentials: CredentialsDTO): Promise<UserDTO>;
     signUp(user: UserDTO): Promise<UserDTO>;
     getByEmail(email: string): Promise<UserDTO | null>;
+    isAdmin(id: string): Promise<boolean>;
+
 }

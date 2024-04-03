@@ -1,6 +1,6 @@
 import Model from "./model";
 import DTO from './dto';
-import { OkPacketParams } from "mysql2";
+import { OkPacketParams, RowDataPacket } from "mysql2";
 import query from "../../db/mysql";
 import config from "config";
 
@@ -25,6 +25,17 @@ class Followers implements Model {
         return follower;
     }
 
+    public async getFollows(id: string): Promise<DTO[]> {
+        const follower = (await query(`
+            SELECT  userId,
+                    vacationId
+            FROM    followers 
+            WHERE   userId = ? 
+            AND     vacationId = ?
+        `, [id]));
+        return follower;
+    }
+
     public async follow(follower: DTO): Promise<DTO> {
         const { userId, vacationId } = follower;
         await query(`
@@ -40,6 +51,16 @@ class Followers implements Model {
             WHERE       vacationId = ?
         `, [id]);
         return Boolean(result.affectedRows);
+    }
+
+    public async followsCounter(id: string): Promise<number> {
+        const queryResult: RowDataPacket[] = await query(`
+            SELECT COUNT(*) AS followerCount
+            FROM               followers
+            WHERE              vacationId = ?
+        `, [id]);
+        const followerCount: number = queryResult[0].followerCount;
+        return followerCount;
     }
 }
 

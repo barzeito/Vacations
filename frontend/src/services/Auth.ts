@@ -29,14 +29,15 @@ class AuthService {
         return token;
     }
 
-    public async checkIfAdmin(login: LoginModel): Promise<boolean> {
+    public async isAdmin(id: string): Promise<boolean> {
         try {
-            const response = await axios.get<{ roleId: number }>(appConfig.usersUrl, { params: login });
+            const response = await axios.get<{ roleId: number }>(appConfig.isAdminUrl + `/${id}`);
             const roleId = response.data.roleId;
             const isAdmin = roleId === 2;
+            console.log(isAdmin)
             return isAdmin;
         } catch (error) {
-            console.error('Error checking if user is admin:', error);
+            console.error(error);
             throw error;
         }
     }

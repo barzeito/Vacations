@@ -12,6 +12,7 @@ function Home(): JSX.Element {
 
     const navigate = useNavigate();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
+    const [isChecked, setIsChecked] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -27,7 +28,6 @@ function Home(): JSX.Element {
 
     }, []);
 
-
     useEffect(() => {
         const token = authStore.getState().token;
         if (!token) {
@@ -36,9 +36,42 @@ function Home(): JSX.Element {
         }
     })
 
+    async function getAllByStartDate() {
+        try {
+            const date = new Date();
+            const todayDate = date.toISOString().slice(0, 10);
+            const vacations = await vacationService.getVacationByStartDate(todayDate);
+            setVacations(vacations);
+            notifyService.success('Filter applied')
+            setIsChecked(true);
+        } catch (error) {
+            notifyService.error(error);
+        }
+    };
+
+    async function resetFilters() {
+        try {
+            const vacations = await vacationService.getAll()
+            setVacations(vacations);
+            notifyService.success('Filters Cleared')
+            setIsChecked(false);
+        } catch (error) {
+            notifyService.error(error);
+        }
+    }
+
     return (
         <div className="Home">
-            {vacations.map(v => <Cards key={v.vacationId} vacation={v} />)}
+            <div className="Filters">
+                <h4>Filters: </h4>
+                <label><input type="checkbox" />Following</label>
+                <label><input type="checkbox" checked={isChecked} onChange={getAllByStartDate} />Started Vacations</label>
+                <label><input type="checkbox" />Ended Vacations</label>
+                <button onClick={resetFilters}>Clear Filters</button>
+            </div>
+            <div className="HomeCards">
+                {vacations.map(v => <Cards key={v.vacationId} vacation={v} />)}
+            </div>
         </div>
     );
 }

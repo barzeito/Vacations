@@ -24,10 +24,10 @@ function EditVacationPanel(): JSX.Element {
             const file = ((imageSrc as unknown as FileList))[0]
             if (file) {
                 const newSrc = window.URL.createObjectURL(file);
-                return <img src={newSrc} />
+                return <img src={newSrc} alt="" />
             }
         }
-        return <img src={src} />
+        return <img src={src} alt="" />
     }
 
     function formatOriginalDate(dateTimeString: string | undefined) {

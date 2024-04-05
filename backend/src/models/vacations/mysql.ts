@@ -59,15 +59,30 @@ class Vacations implements Model {
         const { vacationId, destination, description, startDate, endDate, price, image } = vacation;
         await query(`
                 UPDATE vacations
-                SET destination = ?,
-                    description = ?,
-                    startDate = ?,
-                    endDate = ?,
-                    price = ?,
-                    image = ?
-                WHERE vacationId = ?
+                SET    destination = ?,
+                       description = ?,
+                       startDate = ?,
+                       endDate = ?,
+                       price = ?,
+                       image = ?
+                WHERE  vacationId = ?
             `, [destination, description, startDate, endDate, price, image, vacationId]);
         return this.getOne(vacationId);
+    }
+
+    public async getAllByStartDate(date: string): Promise<DTO[]> {
+        const vacations = await query(`
+            SELECT  vacationId,
+                    destination,
+                    description,
+                    startDate,
+                    endDate,
+                    price,
+                    image
+            FROM    vacations  
+            WHERE   startDate >= ?
+        `, [date]);
+        return vacations;
     }
 }
 

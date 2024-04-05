@@ -70,6 +70,12 @@ class VacationService {
         vacationsStore.dispatch(action);
         return updatedVacation;
     }
+
+    public async getVacationByStartDate(date: string): Promise<VacationModel[]> {
+        const response = await axios.get<VacationModel[]>(`${appConfig.vacationsUrl}/start-date/${date}`);
+        const vacations = response.data;
+        return vacations;
+    }
 }
 const vacationService = new VacationService();
 export default vacationService;

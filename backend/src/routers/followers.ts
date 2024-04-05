@@ -1,15 +1,13 @@
 import { Router } from "express";
 import { add, followsCounter, getAll, getFollows, getOne, remove } from "../controllers/followers/controller";
-import followers from "../models/followers/mysql";
 
 const router = Router();
 
 router.get('/', getAll);
 router.get('/:id', getOne);
-router.get('/counter/:id', followsCounter);
-router.get('/follows/:id', getFollows);
-router.post('/', add);
-router.delete('/:id', remove);
-
+router.get('/counter/:id', followsCounter); //Get all follows number
+router.get('/follows/:id', getFollows); // If user follow
+router.post('/', add); // Add Follow
+router.delete('/:id', remove);// Remove Follow
 
 export default router;

@@ -6,4 +6,8 @@ export default interface Model {
     add(vacation: DTO): Promise<DTO>;
     update(vacation: DTO): Promise<DTO>;
     remove(id: string): Promise<boolean>;
+    //getAllByFollow(): Promise<DTO[]>;
+    getAllByStartDate(date: string): Promise<DTO[]>;
+    //getAllByEndDate(): Promise<DTO[]>;
+
 }

@@ -26,10 +26,12 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
 export const getFollows = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const follows = await getModel().getFollows(req.params.id);
-        if (!follows) return next();
+        if (follows.length === 0) {
+            return next();
+        }
         res.json(follows);
     } catch (err) {
-        next(err)
+        next(err);
     }
 }
 

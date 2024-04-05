@@ -25,17 +25,6 @@ class Followers implements Model {
         return follower;
     }
 
-    public async getFollows(id: string): Promise<DTO[]> {
-        const follower = (await query(`
-            SELECT  userId,
-                    vacationId
-            FROM    followers 
-            WHERE   userId = ? 
-            AND     vacationId = ?
-        `, [id]));
-        return follower;
-    }
-
     public async follow(follower: DTO): Promise<DTO> {
         const { userId, vacationId } = follower;
         await query(`
@@ -51,6 +40,15 @@ class Followers implements Model {
             WHERE       vacationId = ?
         `, [id]);
         return Boolean(result.affectedRows);
+    }
+
+    public async getFollows(id: string): Promise<DTO[]> {
+        const follows = (await query(`
+            SELECT userId, vacationId
+            FROM   followers
+            WHERE  userId = ?
+        `, [id]));
+        return follows;
     }
 
     public async followsCounter(id: string): Promise<number> {

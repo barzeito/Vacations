@@ -1,7 +1,37 @@
-.Home {
+.HomeCards {
     margin: 50px;
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, 300px);
     justify-content: center;
+}
+
+.Filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.Filters label {
+    margin-right: 10px;
+}
+
+.Filters button {
+    background-color: #2D8FCD;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.Filters button:hover {
+    background-color: #0056b3;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Filters button:active {
+    transform: translateY(2px);
 }

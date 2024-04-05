@@ -23,6 +23,15 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
+export const getAllByStartDate = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const vacationsByDate = await getModel().getAllByStartDate(req.params.date);
+        res.json(vacationsByDate.map(convertVacationToImageUrl));
+    } catch (err) {
+        next(err)
+    }
+}
+
 // ======== Get one vacation by id ======== 
 export const getOne = async (req: Request, res: Response, next: NextFunction) => {
     try {

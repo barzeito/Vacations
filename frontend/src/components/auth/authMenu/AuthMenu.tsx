@@ -5,7 +5,7 @@ import { authStore } from "../../../redux/AuthState";
 import notify from "../../../services/Notify";
 import { NavLink } from "react-router-dom";
 import authService from "../../../services/Auth";
-import notifyService from "../../../services/Notify";
+//import notifyService from "../../../services/Notify";
 
 function AuthMenu(): JSX.Element {
 

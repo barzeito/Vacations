@@ -58,15 +58,15 @@ class VacationService {
     public async editVacation(vacation: VacationModel): Promise<VacationModel> {
         const config = {
             headers: {
-                'Content-Type': 'multipart/from-date'
+                'Content-Type': 'multipart/form-data'
             }
-        }
+        };
         const response = await axios.patch<VacationModel>(appConfig.vacationsUrl + `/${vacation.vacationId}`, vacation, config);
         const updatedVacation = response.data;
         const action: VacationsAction = {
             type: VacationsActionType.UpdateVacation,
             payload: updatedVacation
-        }
+        };
         vacationsStore.dispatch(action);
         return updatedVacation;
     }

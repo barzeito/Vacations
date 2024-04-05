@@ -30,13 +30,24 @@ function EditVacationPanel(): JSX.Element {
         return <img src={src} />
     }
 
+    function formatOriginalDate(dateTimeString: string | undefined) {
+        if (!dateTimeString) {
+            return;
+        }
+        const dateTime = new Date(dateTimeString);
+        const year = dateTime.getFullYear();
+        const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+        const day = String(dateTime.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
     useEffect(() => {
         vacationService.getOne(vacationId)
             .then(vacationFromServer => {
                 setValue('destination', vacationFromServer?.destination);
                 setValue('description', vacationFromServer?.description);
-                setValue('startDate', vacationFromServer?.startDate);
-                setValue('endDate', vacationFromServer?.endDate);
+                setValue('startDate', formatOriginalDate(vacationFromServer?.startDate));
+                setValue('endDate', formatOriginalDate(vacationFromServer?.endDate));
                 setValue('price', vacationFromServer?.price);
                 setSrc(vacationFromServer?.imageUrl || '');
             })
@@ -48,9 +59,10 @@ function EditVacationPanel(): JSX.Element {
             vacation.image = (vacation.image as unknown as FileList)[0];
             vacation.vacationId = vacationId;
             const updatedVacation = await vacationService.editVacation(vacation);
+            console.log(updatedVacation)
             notifyService.success(`updated ${updatedVacation.vacationId}`);
             console.log(`updated ${updatedVacation.vacationId}`)
-            // navigate('/panel/edit');
+            navigate('/panel/edit');
         } catch (error) {
             notifyService.error(error);
         }

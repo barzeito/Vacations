@@ -26,7 +26,6 @@ function EditVacation(): JSX.Element {
 
     return (
         <div className="EditVacation">
-            <PanelNavigation />
             <div className="CadsContainer">
                 {vacations.map(v => <EditCards key={v.vacationId} vacation={v} />)}
             </div>

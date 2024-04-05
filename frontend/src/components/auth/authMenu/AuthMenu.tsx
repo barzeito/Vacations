@@ -79,7 +79,7 @@ function AuthMenu(): JSX.Element {
                     :
                     <div className="Guest">
                         <span className="Title">Hello {user.firstName} |</span>
-                        <NavLink to="/panel"><div>Panel</div></NavLink>
+                        <NavLink to="/panel"><div>Panel |</div></NavLink>
                         {/* {isAdmin && <NavLink to="/panel"><div>Panel</div></NavLink>} */}
                         <NavLink to="/home" onClick={() => { logout(); setMenuOpen(false); }}><div>Logout</div></NavLink>
                     </div>

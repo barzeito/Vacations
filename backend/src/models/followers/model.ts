@@ -7,6 +7,6 @@ export default interface Model {
     follow(follower: DTO): Promise<DTO>;
     unFollow(id: string): Promise<boolean>;
     followsCounter(id: string): Promise<number>;
-
+    countAllFollows(): Promise<DTO[]>
 
 }

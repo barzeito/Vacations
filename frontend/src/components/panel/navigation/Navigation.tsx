@@ -29,6 +29,7 @@ function PanelNavigation(): JSX.Element {
                     <li><NavLink to="/panel">Dashboard</NavLink></li>
                     <li><NavLink to="/panel/add">Add Vacation</NavLink></li>
                     <li><NavLink to="/panel/edit">Edit Vacation</NavLink></li>
+                    <li><NavLink to="/panel/csv">CSV Download</NavLink></li>
                 </ul>
             </div>
         </div>

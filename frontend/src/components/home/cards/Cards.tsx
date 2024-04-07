@@ -8,8 +8,9 @@ import FollowModel from "../../../models/FollowModel";
 import notifyService from "../../../services/Notify";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
+import { useParams } from "react-router-dom";
 
-//TODO: Fix followsCounter and fix like button when it not shows as liked
+//TODO: Fix followsCounter
 
 interface vacationsCardsProps {
     vacation: VacationModel
@@ -21,8 +22,9 @@ type User = {
 
 function Cards(props: vacationsCardsProps): JSX.Element {
 
-    const [liked, setLiked] = useState(false);
     const [user, setUser] = useState<User>();
+    const [liked, setLiked] = useState(false);
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -33,6 +35,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
     }, []);
 
 
+    // Handle the Follow button
     async function handleLike(event: React.ChangeEvent<HTMLInputElement>) {
         const follower: FollowModel = {
             userId: user?.userId,
@@ -56,13 +59,44 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         }
     }
 
+    // Check if user is following a vacation
+    useEffect(() => {
+        async function isUserLiked() {
+            try {
+                if (user) {
+                    const likedVacations = await followService.getFollowed(user.userId);
+                    const isLiked = likedVacations.some((follow: FollowModel) => follow.vacationId === props.vacation.vacationId);
+                    setLiked(isLiked);
+                }
+            } catch (error) {
+                notifyService.error(error);
+            }
+        }
+        isUserLiked();
+    }, [user, props.vacation.vacationId]);
+
+
+    // useEffect(() => {
+    //     async function usersFollowedCounter() {
+    //         try {
+    //             if (props.vacation.vacationId) {
+    //                 const followsCounter = await followService.getFollowedNumber(props.vacation.vacationId);
+    //                 setCounter(followsCounter);
+    //             }
+    //         } catch (error) {
+    //             notifyService.error(error);
+    //         }
+    //     }
+    //     usersFollowedCounter();
+    // }, [props.vacation.vacationId]);
+
     return (
         <div className="Cards">
             <div className="Card">
                 <div className="cardTop">
                     <label className={`cardFollow ${liked ? 'liked' : ''}`}>
                         <input type="checkbox" checked={liked} onChange={handleLike} />
-                        {liked ? 'Liked' : 'Like'}
+                        {liked ? 'Liked' : 'Like'}({counter})
                     </label>
                     <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
                     <div className="cardName">{props.vacation.destination}</div>

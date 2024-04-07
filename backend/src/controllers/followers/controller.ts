@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import getModel from "../../models/followers/factory";
 import { StatusCodes } from "http-status-codes";
 import createHttpError, { NotFound } from "http-errors";
+import { json2csv } from "json-2-csv";
 
 
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
@@ -64,3 +65,23 @@ export const followsCounter = async (req: Request, res: Response, next: NextFunc
     }
 }
 
+export const countAllFollows = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const countedFollows = await getModel().countAllFollows();
+        res.json(countedFollows);
+    } catch (err) {
+        next(err)
+    }
+}
+
+export const sendCSV = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const data = await getModel().countAllFollows();
+        const csv = json2csv(data);
+        res.header('Content-Type', 'text/csv');
+        res.attachment('Vacations.csv');
+        res.send(csv);
+    } catch (err) {
+        next(err);
+    }
+};

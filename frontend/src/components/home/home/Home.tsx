@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
 import { authStore } from "../../../redux/AuthState";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import notifyService from "../../../services/Notify";
 import Cards from "../cards/Cards";
 import VacationModel from "../../../models/VacationModel";
 import vacationService from "../../../services/Vacation";
 import { vacationsStore } from "../../../redux/VacationState";
+import followService from "../../../services/Follow";
+import FollowModel from "../../../models/FollowModel";
+import { jwtDecode } from "jwt-decode";
+
+type User = {
+    userId: string,
+};
 
 function Home(): JSX.Element {
 
+    const params = useParams();
+    const vacationId = String(params.vacationId);
+
     const navigate = useNavigate();
+    const [user, setUser] = useState<User>();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -30,11 +41,14 @@ function Home(): JSX.Element {
 
     useEffect(() => {
         const token = authStore.getState().token;
+        // const user = jwtDecode<{ user: User }>(token).user;
+        // setUser(user);
         if (!token) {
             notifyService.error('You must be logged in to continue.')
             navigate('/login');
         }
-    })
+    }, [])
+
 
     async function getAllByStartDate() {
         try {
@@ -44,6 +58,21 @@ function Home(): JSX.Element {
             setVacations(vacations);
             notifyService.success('Filter applied')
             setIsChecked(true);
+        } catch (error) {
+            notifyService.error(error);
+        }
+    };
+//TODO: Fix getAllByFollow function
+//TODO: Add on Vacations filter
+    async function getAllByFollow() {
+        try {
+            if (user) {
+                const vacations = await followService.getFollowedFilter(user?.userId);
+                const followedVacations = vacations.filter((follow: FollowModel) => follow.vacationId === vacationId);
+                setVacations(followedVacations);
+                notifyService.success('Filter applied')
+            }
+            // setIsChecked(true);
         } catch (error) {
             notifyService.error(error);
         }
@@ -64,7 +93,7 @@ function Home(): JSX.Element {
         <div className="Home">
             <div className="Filters">
                 <h4>Filters: </h4>
-                <label><input type="checkbox" />Following</label>
+                <label><input type="checkbox" onChange={getAllByFollow} />Following</label>
                 <label><input type="checkbox" checked={isChecked} onChange={getAllByStartDate} />Started Vacations</label>
                 <label><input type="checkbox" />Ended Vacations</label>
                 <button onClick={resetFilters}>Clear Filters</button>

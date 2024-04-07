@@ -7,6 +7,7 @@ import Panel from "../../panel/panel/Panel";
 import AddVacation from "../../panel/addVacation/AddVacation";
 import EditVacation from "../../panel/editVacation/EditVacation";
 import EditVacationPanel from "../../panel/editVacationPanel/EditVacationPanel";
+import SendCSV from "../../panel/sendCSV/SendCSV";
 
 
 function Routing(): JSX.Element {
@@ -25,6 +26,7 @@ function Routing(): JSX.Element {
             <Route path="/panel/add" element={<AddVacation />} />
             <Route path="/panel/edit" element={<EditVacation />} />
             <Route path="/panel/edit/:vacationId" element={<EditVacationPanel />} />
+            <Route path="/panel/csv" element={<SendCSV />} />
 
 
             <Route path="/" element={<Navigate to="/home" />} />

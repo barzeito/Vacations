@@ -60,6 +60,17 @@ class Followers implements Model {
         const followerCount: number = queryResult[0].followerCount;
         return followerCount;
     }
+
+    public async countAllFollows(): Promise<DTO[]> {
+        const countedFollows = (await query(`
+            SELECT v.destination,
+                   count(f.userId) as followers
+            FROM   vacations AS V
+            LEFT JOIN followers AS f on f.vacationId = v.vacationId
+            GROUP BY v.vacationId 
+        `,));
+        return countedFollows;
+    }
 }
 
 const followers = new Followers();

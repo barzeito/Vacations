@@ -1,5 +1,9 @@
 import "./Panel.css";
 import PanelNavigation from "../navigation/Navigation";
+import { useEffect, useState } from "react";
+import followService from "../../../services/Follow";
+import notifyService from "../../../services/Notify";
+import FollowModel from "../../../models/FollowModel";
 
 function Panel(): JSX.Element {
 
@@ -24,6 +28,15 @@ function Panel(): JSX.Element {
                         <span>100</span>
                     </div>
                 </div>
+                <div>Chart
+                    {/* {followsCounter.map((follow, index) => (
+                        <div key={index}>
+                            <p>{follow.destination}</p>
+                            <span>{follow.followers}</span>
+                        </div>
+                    ))} */}
+                </div>
+
             </div>
         </div>
 

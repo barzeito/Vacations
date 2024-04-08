@@ -42,7 +42,7 @@ class Followers implements Model {
         return Boolean(result.affectedRows);
     }
 
-    public async getFollows(id: string): Promise<DTO[]> {
+    public async getUserFollows(id: string): Promise<DTO[]> {
         const follows = (await query(`
             SELECT userId, vacationId
             FROM   followers
@@ -51,7 +51,7 @@ class Followers implements Model {
         return follows;
     }
 
-    public async followsCounter(id: string): Promise<number> {
+    public async getVacationsFollowsNumber(id: string): Promise<number> {
         const queryResult: RowDataPacket[] = await query(`
             SELECT COUNT(*) AS followerCount
             FROM               followers
@@ -61,7 +61,7 @@ class Followers implements Model {
         return followerCount;
     }
 
-    public async countAllFollows(): Promise<DTO[]> {
+    public async getAllVacationsFollows(): Promise<DTO[]> {
         const countedFollows = (await query(`
             SELECT v.destination,
                    count(f.userId) as followers

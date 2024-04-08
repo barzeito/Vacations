@@ -18,7 +18,7 @@ function EditVacationPanel(): JSX.Element {
     function ImageWatched({ control }: { control: Control<VacationModel> }) {
         const imageSrc = useWatch({
             control,
-            name: 'image',
+            name: 'imageFile',
         })
         if (imageSrc) {
             const file = ((imageSrc as unknown as FileList))[0]
@@ -56,7 +56,7 @@ function EditVacationPanel(): JSX.Element {
 
     async function submitUpdate(vacation: VacationModel) {
         try {
-            vacation.image = (vacation.image as unknown as FileList)[0];
+            vacation.imageFile = (vacation.imageFile as unknown as FileList)[0];
             vacation.vacationId = vacationId;
             const updatedVacation = await vacationService.editVacation(vacation);
             console.log(updatedVacation)
@@ -88,7 +88,7 @@ function EditVacationPanel(): JSX.Element {
                 <input type="number" {...register('price')} />
 
                 <label>Image:</label>
-                <input type="file" accept="image/*" {...register('image')} />
+                <input type="file" accept="image/*" {...register('imageFile')} />
 
                 <ImageWatched control={control} />
                 <button>Update Vacation</button>

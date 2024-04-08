@@ -24,9 +24,9 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
-export const getFollows = async (req: Request, res: Response, next: NextFunction) => {
+export const getUserFollows = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const follows = await getModel().getFollows(req.params.id);
+        const follows = await getModel().getUserFollows(req.params.id);
         if (follows.length === 0) {
             return next();
         }
@@ -55,9 +55,9 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
-export const followsCounter = async (req: Request, res: Response, next: NextFunction) => {
+export const getVacationsFollowsNumber = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const followers = await getModel().followsCounter(req.params.id);
+        const followers = await getModel().getVacationsFollowsNumber(req.params.id);
         if (!followers) return next();
         res.json(followers);
     } catch (err) {
@@ -65,9 +65,9 @@ export const followsCounter = async (req: Request, res: Response, next: NextFunc
     }
 }
 
-export const countAllFollows = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllVacationsFollows = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const countedFollows = await getModel().countAllFollows();
+        const countedFollows = await getModel().getAllVacationsFollows();
         res.json(countedFollows);
     } catch (err) {
         next(err)
@@ -76,7 +76,7 @@ export const countAllFollows = async (req: Request, res: Response, next: NextFun
 
 export const sendCSV = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const data = await getModel().countAllFollows();
+        const data = await getModel().getAllVacationsFollows();
         const csv = json2csv(data);
         res.header('Content-Type', 'text/csv');
         res.attachment('Vacations.csv');

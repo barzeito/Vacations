@@ -11,7 +11,7 @@ function AddVacation(): JSX.Element {
 
     async function submitVacation(vacation: VacationModel) {
         try {
-            vacation.image = (vacation.image as unknown as FileList)[0];
+            vacation.imageFile = (vacation.imageFile as unknown as FileList)[0];
             await vacationService.addVacation(vacation);
             notifyService.success(`New vacation added successfully.`);
             setValue('destination', '')
@@ -50,7 +50,7 @@ function AddVacation(): JSX.Element {
                     <input type="number" {...register('price')} />
 
                     <label>Image:</label>
-                    <input type="file" accept="image/*" {...register('image')} />
+                    <input type="file" accept="image/*" {...register('imageFile')} />
 
                     <button>Add Vacation</button>
 

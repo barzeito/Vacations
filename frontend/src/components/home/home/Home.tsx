@@ -10,6 +10,7 @@ import { vacationsStore } from "../../../redux/VacationState";
 import followService from "../../../services/Follow";
 import FollowModel from "../../../models/FollowModel";
 import { jwtDecode } from "jwt-decode";
+import Pagination from "../Pagination/Pagination";
 
 type User = {
     userId: string,
@@ -62,8 +63,9 @@ function Home(): JSX.Element {
             notifyService.error(error);
         }
     };
-//TODO: Fix getAllByFollow function
-//TODO: Add on Vacations filter
+    //TODO: Fix getAllByFollow function
+    //TODO: Add on Vacations filter
+    //TODO: Fix Pagination
     async function getAllByFollow() {
         try {
             if (user) {
@@ -89,6 +91,14 @@ function Home(): JSX.Element {
         }
     }
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(10);
+
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = vacations.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(vacations.length / recordsPerPage)
+
     return (
         <div className="Home">
             <div className="Filters">
@@ -101,6 +111,11 @@ function Home(): JSX.Element {
             <div className="HomeCards">
                 {vacations.map(v => <Cards key={v.vacationId} vacation={v} />)}
             </div>
+            <Pagination
+                nPages={nPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 }

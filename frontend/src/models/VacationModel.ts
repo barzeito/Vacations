@@ -6,7 +6,7 @@ class VacationModel {
     public endDate?: string;
     public price?: number;
     public imageUrl?: string;
-    public image?: File;
+    public imageFile?: File;
 }
 
 export default VacationModel;

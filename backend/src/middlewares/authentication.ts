@@ -19,7 +19,7 @@ export default async function authentication(req: Request, res: Response, next: 
     const token = header.split(' ')[1];
     try {
         const { user } = verify(token, config.get<string>('app.jwt.secret')) as JwtPayload;
-        req.user = await getModel().getOne(user.id);
+        req.user = await getModel().getOne(user.userId);
         return next();
     } catch (err) {
         return next(createHttpError(Unauthorized(err.message || err)));

@@ -84,6 +84,21 @@ class Vacations implements Model {
         `, [date]);
         return vacations;
     }
+
+    public async getAllByBetweenDates(): Promise<DTO[]> {
+        const vacations = await query(`
+            SELECT vacationId,
+                   destination,
+                   description,
+                   startDate,
+                   endDate,
+                   price,
+                   image
+            FROM vacations  
+            WHERE CURRENT_DATE BETWEEN startDate AND endDate;
+        `)
+        return vacations;
+    }
 }
 
 const vacations = new Vacations();

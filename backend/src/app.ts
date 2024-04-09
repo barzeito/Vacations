@@ -10,20 +10,31 @@ import followersRouter from './routers/followers';
 import vacationRouter from './routers/vacations';
 import expressFileUpload from 'express-fileupload';
 import path from "path";
+import stripTags from "./middlewares/strip-tags";
+import { rateLimit } from 'express-rate-limit'
 
 //TODO: validation for vacation add/update/patch
 //TODO: Fix getFollows, followsCounter
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 100,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+})
+
 const server = express();
+//server.use(limiter);
 server.use(cors());
-server.use(authentication);
 server.use(express.json());
+server.use(authentication);
+server.use(stripTags);
 server.use(expressFileUpload());
 
+server.use('/api', authRouter)
 server.use('/api/users', usersRouter)
 server.use('/api/vacations', vacationRouter)
 server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))))
-server.use('/api', authRouter)
 server.use('/api/followers', followersRouter)
 
 

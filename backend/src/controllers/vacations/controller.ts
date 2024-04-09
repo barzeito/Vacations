@@ -13,7 +13,7 @@ function convertVacationToImageUrl(vacation: DTO) {
     delete vacationWithImageUrl.image;
     return vacationWithImageUrl;
 }
-// ======== Get all vacations ======== 
+
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacations = await getModel().getAll();
@@ -23,16 +23,6 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
-export const getAllByStartDate = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const vacationsByDate = await getModel().getAllByStartDate(req.params.date);
-        res.json(vacationsByDate.map(convertVacationToImageUrl));
-    } catch (err) {
-        next(err)
-    }
-}
-
-// ======== Get one vacation by id ======== 
 export const getOne = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacation = await getModel().getOne(req.params.id);
@@ -43,7 +33,6 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
-// ======== Add vacation ======== 
 export const add = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacation = await getModel().add(req.body);
@@ -58,7 +47,7 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-// ======== Update vacation ======== 
+
 export const update = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
@@ -70,7 +59,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
-// ======== Patch vacation ======== 
+
 export const patch = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = req.params.id;
@@ -83,12 +72,32 @@ export const patch = async (req: Request, res: Response, next: NextFunction) => 
     }
 }
 
-// ======== Remove vacation ======== 
+
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const isDeleted = await getModel().remove(req.params.id)
         if (!isDeleted) return next(createHttpError(NotFound(`Vacation with id ${req.params.id} is not found!`)));
         res.sendStatus(StatusCodes.NO_CONTENT)
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+export const getAllByStartDate = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const vacationsByDate = await getModel().getAllByStartDate(req.params.date);
+        res.json(vacationsByDate.map(convertVacationToImageUrl));
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+export const getAllByBetweenDates = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const vacationsByDate = await getModel().getAllByBetweenDates();
+        res.json(vacationsByDate.map(convertVacationToImageUrl));
     } catch (err) {
         next(err)
     }

@@ -63,13 +63,28 @@ function Home(): JSX.Element {
             notifyService.error(error);
         }
     };
+
+    async function getAllByBetweenDates() {
+        try {
+            const date = new Date();
+            const todayDate = date.toISOString().slice(0, 10);
+            const vacations = await vacationService.getVacationByBetweenDates(todayDate);
+            setVacations(vacations);
+            notifyService.success('Filter applied')
+            setIsChecked(true);
+        } catch (error) {
+            notifyService.error(error);
+        }
+    };
+
     //TODO: Fix getAllByFollow function
     //TODO: Add on Vacations filter
     //TODO: Fix Pagination
     async function getAllByFollow() {
         try {
             if (user) {
-                const vacations = await followService.getFollowedFilter(user?.userId);
+                console.log(user);
+                const vacations = await followService.getUserFollows(user?.userId);
                 const followedVacations = vacations.filter((follow: FollowModel) => follow.vacationId === vacationId);
                 setVacations(followedVacations);
                 notifyService.success('Filter applied')
@@ -103,9 +118,9 @@ function Home(): JSX.Element {
         <div className="Home">
             <div className="Filters">
                 <h4>Filters: </h4>
-                <label><input type="checkbox" onChange={getAllByFollow} />Following</label>
-                <label><input type="checkbox" checked={isChecked} onChange={getAllByStartDate} />Started Vacations</label>
-                <label><input type="checkbox" />Ended Vacations</label>
+                <label><input type="checkbox" onChange={getAllByFollow} />Following Vacations</label>
+                <label><input type="checkbox" onChange={getAllByStartDate} />Not Started Vacations</label>
+                <label><input type="checkbox" onChange={getAllByBetweenDates} />Started Vacations</label>
                 <button onClick={resetFilters}>Clear Filters</button>
             </div>
             <div className="HomeCards">

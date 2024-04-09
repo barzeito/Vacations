@@ -8,6 +8,6 @@ export default interface Model {
     remove(id: string): Promise<boolean>;
     //getAllByFollow(): Promise<DTO[]>;
     getAllByStartDate(date: string): Promise<DTO[]>;
-    //getAllByEndDate(): Promise<DTO[]>;
+    getAllByBetweenDates(): Promise<DTO[]>;
 
 }

@@ -5,6 +5,7 @@ import { FollowAction, FollowActionType, followStore } from "../redux/FollowStat
 import VacationModel from "../models/VacationModel";
 
 class FollowService {
+
     public async follow(follower: FollowModel): Promise<string> {
         const response = await axios.post<string>(appConfig.followUrl, follower);
         const addedFollow = response.data;
@@ -26,25 +27,19 @@ class FollowService {
         followStore.dispatch(action);
     }
 
-    public async getFollowed(userId: string): Promise<FollowModel[]> {
+    public async getUserFollows(userId: string): Promise<FollowModel[]> {
         const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/follows/${userId}`);
         const likedVacations = response.data;
         return likedVacations;
     }
 
-    public async getFollowedNumber(vacationId: string): Promise<number> {
+    public async getVacationsFollowsNumber(vacationId: string): Promise<number> {
         const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/counter/${vacationId}`);
         const followsCounter = response.data.length;
         return followsCounter;
     }
 
-    public async getFollowedFilter(userId: string): Promise<VacationModel[]> {
-        const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/follows/${userId}`);
-        const likedVacations = response.data;
-        return likedVacations;
-    }
-
-    public async getVacationsFollowsCounter(): Promise<FollowModel[]> {
+    public async getAllVacationsFollows(): Promise<FollowModel[]> {
         const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/statistics`);
         const followsCounter = response.data;
         return followsCounter;

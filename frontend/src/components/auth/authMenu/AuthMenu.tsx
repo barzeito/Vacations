@@ -5,6 +5,7 @@ import { authStore } from "../../../redux/AuthState";
 import notify from "../../../services/Notify";
 import { NavLink } from "react-router-dom";
 import authService from "../../../services/Auth";
+import notifyService from "../../../services/Notify";
 //import notifyService from "../../../services/Notify";
 
 function AuthMenu(): JSX.Element {
@@ -16,7 +17,7 @@ function AuthMenu(): JSX.Element {
     };
 
     const [user, setUser] = useState<User>();
-    // const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
 

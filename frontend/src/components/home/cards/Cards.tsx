@@ -64,7 +64,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         async function isUserLiked() {
             try {
                 if (user) {
-                    const likedVacations = await followService.getFollowed(user.userId);
+                    const likedVacations = await followService.getUserFollows(user.userId);
                     const isLiked = likedVacations.some((follow: FollowModel) => follow.vacationId === props.vacation.vacationId);
                     setLiked(isLiked);
                 }

@@ -5,7 +5,7 @@ import { loginValidator, signupValidator } from "../controllers/auth/validator";
 import enforceGuest from "../middlewares/enforce-guest";
 
 const router = Router();
-router.use(enforceGuest);
+// router.use(enforceGuest);
 
 router.post('/signup', validate(signupValidator), signUp);
 router.post('/login', validate(loginValidator), login);

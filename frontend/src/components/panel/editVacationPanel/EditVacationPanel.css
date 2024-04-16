@@ -4,9 +4,7 @@
     border-radius: 10px;
     padding: 20px;
     width: 400px;
-    /* Adjust width as needed */
     margin: 10px auto;
-    /* Center horizontally */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,6 +20,7 @@
 }
 
 .EditVacationPanel label {
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -31,7 +30,7 @@
 .EditVacationPanel input[type="number"],
 .EditVacationPanel input[type="file"] {
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -45,7 +44,8 @@
     resize: vertical;
 }
 
-.EditVacationPanel button {
+.EditVacationPanel button,
+.back-btn {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #2D8FCD;
@@ -53,8 +53,16 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
+    text-align: center;
 }
 
-.EditVacationPanel button:hover {
+.EditVacationPanel button:hover,
+.back-btn:hover {
     background-color: #0056b3;
+}
+
+.EditVacationPanel span {
+    color: #dc3545;
+    font-size: 0.9em;
 }

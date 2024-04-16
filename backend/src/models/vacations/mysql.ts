@@ -16,8 +16,28 @@ class Vacations implements Model {
                     endDate,
                     price,
                     image
-            FROM    vacations  
+            FROM    vacations
+            ORDER BY startDate ASC
         `,));
+        return vacations;
+    }
+
+    public async getAllPages(pageNumber: number, recordsPerPage: number): Promise<DTO[]> {
+        const offset = (pageNumber - 1) * recordsPerPage;
+        const vacations = await query(`
+            SELECT  vacationId,
+                    destination,
+                    description,
+                    startDate,
+                    endDate,
+                    price,
+                    image
+            FROM    vacations
+            ORDER BY vacationId
+            LIMIT   ?
+            OFFSET  ?
+        `, [recordsPerPage, offset]);
+
         return vacations;
     }
 

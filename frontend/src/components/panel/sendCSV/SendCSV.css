@@ -22,7 +22,8 @@
     margin-bottom: 2rem;
 }
 
-.CSV-Content button {
+.CSV-Content button,
+.CSV-Content .back-btn {
     font-size: 1rem;
     background-color: #2D8FCD;
     color: #fff;
@@ -31,9 +32,11 @@
     text-decoration: none;
     display: inline-block;
     border: none;
+    margin-left: 10px;
 }
 
-.CSV-Content button:hover {
+.CSV-Content button:hover,
+.CSV-Content .back-btn:hover {
     background-color: #0056b3;
 }
 

@@ -1,7 +1,7 @@
 import { Control, useForm, useWatch } from "react-hook-form";
 import "./EditVacationPanel.css";
 import VacationModel from "../../../models/VacationModel";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import vacationService from "../../../services/Vacation";
 import notifyService from "../../../services/Notify";
@@ -12,7 +12,7 @@ function EditVacationPanel(): JSX.Element {
     const vacationId = String(params.vacationId);
 
     const [src, setSrc] = useState<string>('');
-    const { handleSubmit, setValue, register, control } = useForm<VacationModel>();
+    const { handleSubmit, setValue, register, control, formState } = useForm<VacationModel>();
     const navigate = useNavigate();
 
     function ImageWatched({ control }: { control: Control<VacationModel> }) {
@@ -73,25 +73,61 @@ function EditVacationPanel(): JSX.Element {
             <form onSubmit={handleSubmit(submitUpdate)}>
 
                 <label>Destination:</label>
-                <input type="text" {...register('destination')} />
+                <input type="text" {...register('destination', {
+                    minLength: { value: 4, message: 'Minimum length is 4 characters' },
+                    required: {
+                        value: true,
+                        message: 'Destination can\'t be empty.'
+                    }
+                })} /><span>{formState.errors.destination?.message}</span>
 
                 <label>Description:</label>
-                <textarea {...register('description')} />
+                <input type="text"{...register('description', {
+                    minLength: { value: 6, message: 'Minimum length is 6 characters' },
+                    required: {
+                        value: true,
+                        message: 'Description can\'t be empty.'
+                    }
+                })} /><span>{formState.errors.description?.message}</span>
 
                 <label>Start Date:</label>
-                <input type="date"{...register('startDate')} />
+                <input type="date"{...register('startDate', {
+                    required: {
+                        value: true,
+                        message: 'Start Date can\'t be empty.'
+                    }
+                })} /><span>{formState.errors.startDate?.message}</span>
 
                 <label>End Date:</label>
-                <input type="date"{...register('endDate')} />
+                <input type="date"{...register('endDate', {
+                    required: {
+                        value: true,
+                        message: 'End Date can\'t be empty.'
+                    }
+                })} /><span>{formState.errors.endDate?.message}</span>
 
                 <label>Price:</label>
-                <input type="number" {...register('price')} />
+                <input type="number" {...register('price', {
+                    min: { value: 1, message: 'Minimum price is $1' },
+                    max: { value: 10000, message: 'Maximum price is $10,000' },
+                    required: {
+                        value: true,
+                        message: 'Price can\'t be empty.'
+                    }
+                })} /><span>{formState.errors.price?.message}</span>
+
 
                 <label>Image:</label>
-                <input type="file" accept="image/*" {...register('imageFile')} />
+                <input type="file" accept="image/*" {...register('imageFile', {
+                    required: {
+                        value: false,
+                        message: ''
+                    }
+                })} /><span>{formState.errors.imageFile?.message}</span>
 
                 <ImageWatched control={control} />
                 <button>Update Vacation</button>
+                <NavLink to="/panel/edit" className="back-btn">Back</NavLink>
 
             </form>
         </div>

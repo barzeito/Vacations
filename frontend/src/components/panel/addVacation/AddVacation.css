@@ -14,7 +14,8 @@
 
 .FormContent label {
     display: block;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
@@ -23,7 +24,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .FormContent button {
@@ -50,4 +51,9 @@
 
 .FormTitle {
     margin: 0;
+}
+
+.AddVacation span {
+    color: #dc3545;
+    font-size: 0.9em;
 }

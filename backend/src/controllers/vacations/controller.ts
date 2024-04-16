@@ -23,6 +23,18 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
+export const getAllByPage = async (req: Request, res: Response, next: NextFunction) => {
+    const { page, perPage } = req.query;
+    const pageNumber = +page
+    const recordsPerPage = +perPage
+    try {
+        const vacations = await getModel().getAllPages(pageNumber, recordsPerPage);
+        res.json(vacations.map(convertVacationToImageUrl));
+    } catch (err) {
+        next(err)
+    }
+}
+
 export const getOne = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacation = await getModel().getOne(req.params.id);

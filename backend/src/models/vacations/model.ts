@@ -2,6 +2,7 @@ import DTO from './dto';
 
 export default interface Model {
     getAll(): Promise<DTO[]>;
+    getAllPages(pageNumber: number, recordsPerPage: number): Promise<DTO[]>;
     getOne(id: string): Promise<DTO>;
     add(vacation: DTO): Promise<DTO>;
     update(vacation: DTO): Promise<DTO>;

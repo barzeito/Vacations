@@ -9,7 +9,7 @@ const router = Router();
 
 router.post('/signup', validate(signupValidator), signUp);
 router.post('/login', validate(loginValidator), login);
-router.post('/role/:id', isAdmin);
+router.get('/role/:id', isAdmin);
 
 
 export default router;

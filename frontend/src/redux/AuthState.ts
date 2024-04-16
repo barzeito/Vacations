@@ -1,4 +1,5 @@
 import { createStore } from "redux";
+import { jwtDecode } from "jwt-decode";
 
 // 1. state
 export class AuthState {
@@ -13,6 +14,13 @@ export enum AuthActionType {
     Signup = 'Signup',
     Login = 'Login',
     Logout = 'Logout',
+    TokenExpired = 'TokenExpired',
+}
+
+const isTokenExpired = (token: string): boolean => {
+    const decodedToken: any = jwtDecode(token);
+    const currentTime: number = Date.now() / 1000;
+    return decodedToken.exp < currentTime;
 }
 
 // 3. action
@@ -33,14 +41,23 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
             localStorage.setItem('token', newState.token);
             break;
         case AuthActionType.Logout:
+        case AuthActionType.TokenExpired:
             newState.token = '';
             localStorage.removeItem('token');
             break;
-
     }
 
     return newState;
 }
 
+
 // 5. store
 export const authStore = createStore(authReducer);
+
+const token = localStorage.getItem('token');
+if (token && isTokenExpired(token)) {
+    authStore.dispatch({
+        type: AuthActionType.TokenExpired,
+        payload: null
+    });
+}

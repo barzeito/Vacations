@@ -13,7 +13,7 @@ function AuthMenu(): JSX.Element {
     type User = {
         firstName: string,
         lastName: string,
-        email: string
+        userId: string,
     };
 
     const [user, setUser] = useState<User>();
@@ -46,20 +46,19 @@ function AuthMenu(): JSX.Element {
         notify.success('logged out successfully');
     }
 
-    //TODO: FIX IS ADMIN FOR PANELS
-    // useEffect(() => {
-    //     async function checkAdmin() {
-    //         if (user) {
-    //             try {
-    //                 const userStatus = await authService.isAdmin(user.email);
-    //                 setIsAdmin(userStatus);
-    //             } catch (error) {
-    //                 notifyService.error(error);
-    //             }
-    //         }
-    //     }
-    //     checkAdmin();
-    // }, [user]);
+    useEffect(() => {
+        async function ifAdmin() {
+            if (user) {
+                try {
+                    const userAdmin = await authService.isAdmin(user.userId);
+                    setIsAdmin(userAdmin);
+                } catch (error: any) {
+                    notifyService.error("Failed to check admin status");
+                }
+            }
+        }
+        ifAdmin();
+    }, [user]);
 
     return (
         <div className="AuthMenu">
@@ -80,8 +79,8 @@ function AuthMenu(): JSX.Element {
                     :
                     <div className="Guest">
                         <span className="Title">Hello {user.firstName} |</span>
-                        <NavLink to="/panel"><div>Panel |</div></NavLink>
-                        {/* {isAdmin && <NavLink to="/panel"><div>Panel</div></NavLink>} */}
+                        <NavLink to="/"><div>Home |</div></NavLink>
+                        {isAdmin && <NavLink to="/panel"><div>Panel |</div></NavLink>}
                         <NavLink to="/home" onClick={() => { logout(); setMenuOpen(false); }}><div>Logout</div></NavLink>
                     </div>
                 }

@@ -31,13 +31,11 @@ class AuthService {
 
     public async isAdmin(id: string): Promise<boolean> {
         try {
-            const response = await axios.get<{ roleId: number }>(appConfig.isAdminUrl + `/${id}`);
-            const roleId = response.data.roleId;
-            const isAdmin = roleId === 2;
-            console.log(isAdmin)
+            const response = await axios.get(appConfig.isAdminUrl + `/${id}`);
+            const isAdmin = response.data === true;
+            console.log("isAdmin:", isAdmin);
             return isAdmin;
         } catch (error) {
-            console.error(error);
             throw error;
         }
     }

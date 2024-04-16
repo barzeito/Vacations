@@ -14,9 +14,8 @@ function SignUp(): JSX.Element {
 
     async function submitUserData(signUpModel: SignUpModel): Promise<void> {
         try {
-            // service
             await authService.signUp(signUpModel);
-            notifyService.success('you have been successfully signed up');
+            notifyService.success('you have been successfully signed up.');
             navigate('/home');
         } catch (err) {
             notifyService.error(err);
@@ -26,7 +25,7 @@ function SignUp(): JSX.Element {
     useEffect(() => {
         const token = authStore.getState().token;
         if (token) {
-            notifyService.error('You are already signed up.')
+            notifyService.error('You are already signed up!')
             navigate('/home');
         }
     })

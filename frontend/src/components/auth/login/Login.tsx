@@ -14,9 +14,8 @@ function Login(): JSX.Element {
 
     async function submitLoginData(loginModel: LoginModel): Promise<void> {
         try {
-            // service
             await authService.login(loginModel);
-            notifyService.success('you have been successfully logged in');
+            notifyService.success('you have been successfully logged in.');
             navigate('/home');
         } catch (err) {
             notifyService.error(err);
@@ -26,7 +25,7 @@ function Login(): JSX.Element {
     useEffect(() => {
         const token = authStore.getState().token;
         if (token) {
-            notifyService.error('You are already logged in, please don\'t login again')
+            notifyService.error('You are already logged in!')
             navigate('/home');
         }
     })

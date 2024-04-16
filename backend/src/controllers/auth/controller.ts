@@ -33,9 +33,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 export const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user = await getModel().isAdmin(req.params.id);
-        if (!user) return next(createHttpError(Unauthorized('User is not Admin')));
-        res.json(true);
+        res.json(user);
     } catch (err) {
-        return next(createHttpError(Unauthorized(ReasonPhrases.UNAUTHORIZED)));
+        next(err)
     }
 }

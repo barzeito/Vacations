@@ -64,12 +64,12 @@ class Auth implements Model {
         return user || null;
     }
 
-    public async isAdmin(email: string): Promise<boolean> {
+    public async isAdmin(userId: string): Promise<boolean> {
         const user = (await query(`
             SELECT   roleId
             FROM     users  
-            WHERE    email = ?
-        `, [email]))[0];
+            WHERE    userId = ?
+        `, [userId]))[0];
 
         return user?.roleId === 2;
     }

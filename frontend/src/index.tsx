@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import interceptors from './utils/Interceptors';
 import Layout from './components/layout/layout/Layout';
+import { Helmet } from 'react-helmet';
 
 interceptors.create();
 
@@ -12,7 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <BrowserRouter>
-        <Layout/>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Vacations</title>
+        </Helmet>
+        <Layout />
     </BrowserRouter>
 );
 

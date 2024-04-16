@@ -49,6 +49,8 @@
     ]
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.11",
+    "react-helmet": "^6.1.0",
     "webpack-dev-server": "^4.15.2"
   }
 }

@@ -8,7 +8,8 @@ import FollowModel from "../../../models/FollowModel";
 import notifyService from "../../../services/Notify";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import authService from "../../../services/Auth";
 
 //TODO: Fix followsCounter
 
@@ -24,7 +25,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
 
     const [user, setUser] = useState<User>();
     const [liked, setLiked] = useState(false);
-    const [counter, setCounter] = useState(0);
+    const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -75,37 +76,28 @@ function Cards(props: vacationsCardsProps): JSX.Element {
     }, [user, props.vacation.vacationId]);
 
     useEffect(() => {
-        async function vacationsFollowsStatistics() {
-            try {
-                const vacationsStatistics = await followService.getAllVacationsFollows();
-            } catch (error) {
-                
+        async function ifAdmin() {
+            if (user) {
+                try {
+                    const userAdmin = await authService.isAdmin(user.userId);
+                    setIsAdmin(userAdmin);
+                } catch (error: any) {
+                    notifyService.error("Failed to check admin status");
+                }
             }
         }
-    })
-
-    // useEffect(() => {
-    //     async function usersFollowedCounter() {
-    //         try {
-    //             if (props.vacation.vacationId) {
-    //                 const followsCounter = await followService.getFollowedNumber(props.vacation.vacationId);
-    //                 setCounter(followsCounter);
-    //             }
-    //         } catch (error) {
-    //             notifyService.error(error);
-    //         }
-    //     }
-    //     usersFollowedCounter();
-    // }, [props.vacation.vacationId]);
+        ifAdmin();
+    }, [user]);
 
     return (
         <div className="Cards">
             <div className="Card">
                 <div className="cardTop">
-                    <label className={`cardFollow ${liked ? 'liked' : ''}`}>
+                    {!isAdmin && <label className={`cardFollow ${liked ? 'liked' : ''}`}>
                         <input type="checkbox" checked={liked} onChange={handleLike} />
-                        {liked ? 'Liked' : 'Like'}({counter})
-                    </label>
+                        {liked ? 'Liked' : 'Like'}(0)
+                    </label>}
+                    {isAdmin && <NavLink to={`/panel/edit`} className="EditNav">Edit</NavLink>}
                     <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
                     <div className="cardName">{props.vacation.destination}</div>
                     <div className="cardDates">{props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>

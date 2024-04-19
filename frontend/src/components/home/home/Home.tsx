@@ -9,7 +9,6 @@ import vacationService from "../../../services/Vacation";
 import { vacationsStore } from "../../../redux/VacationState";
 import followService from "../../../services/Follow";
 import FollowModel from "../../../models/FollowModel";
-import Pagination from "../Pagination/Pagination";
 
 type User = {
     userId: string,

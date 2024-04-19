@@ -59,7 +59,6 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         }
     }
 
-    // Check if user is following a vacation
     useEffect(() => {
         async function isUserLiked() {
             try {
@@ -75,6 +74,15 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         isUserLiked();
     }, [user, props.vacation.vacationId]);
 
+    useEffect(() => {
+        async function vacationsFollowsStatistics() {
+            try {
+                const vacationsStatistics = await followService.getAllVacationsFollows();
+            } catch (error) {
+                
+            }
+        }
+    })
 
     // useEffect(() => {
     //     async function usersFollowedCounter() {

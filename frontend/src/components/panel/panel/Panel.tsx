@@ -1,9 +1,5 @@
 import "./Panel.css";
 import PanelNavigation from "../navigation/Navigation";
-import { useEffect, useState } from "react";
-import followService from "../../../services/Follow";
-import notifyService from "../../../services/Notify";
-import FollowModel from "../../../models/FollowModel";
 
 function Panel(): JSX.Element {
 

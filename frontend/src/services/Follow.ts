@@ -2,7 +2,6 @@ import axios from "axios";
 import appConfig from "../utils/AppConfig";
 import FollowModel from "../models/FollowModel";
 import { FollowAction, FollowActionType, followStore } from "../redux/FollowState";
-import VacationModel from "../models/VacationModel";
 
 class FollowService {
 
@@ -33,7 +32,7 @@ class FollowService {
         return likedVacations;
     }
 
-    public async getVacationsFollowsNumber(vacationId: string): Promise<number> {
+    public async getVacationFollowsNumber(vacationId: string): Promise<number> {
         const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/counter/${vacationId}`);
         const followsCounter = response.data.length;
         return followsCounter;

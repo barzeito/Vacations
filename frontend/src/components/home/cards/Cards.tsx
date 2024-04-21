@@ -46,10 +46,11 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         };
 
         try {
-            if (liked) {
+            if (liked && user) {
                 const vacationId = props.vacation.vacationId;
+                const userId = user.userId;
                 if (vacationId) {
-                    await followService.unFollow(vacationId);
+                    await followService.unFollow(userId, vacationId);
                     notifyService.success(`UnLiked.`);
                 }
             } else {

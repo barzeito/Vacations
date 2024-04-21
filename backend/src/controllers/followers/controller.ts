@@ -47,13 +47,14 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
 
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const isDeleted = await getModel().unFollow(req.body)
+        const { userId, vacationId } = req.params;
+        const isDeleted = await getModel().unFollow({ userId, vacationId });
         if (!isDeleted) return next(createHttpError(NotFound(`User not found.`)));
-        res.sendStatus(StatusCodes.NO_CONTENT)
+        res.sendStatus(StatusCodes.NO_CONTENT);
     } catch (err) {
-        next(err)
+        next(err);
     }
-}
+};
 
 export const getVacationsFollowsNumber = async (req: Request, res: Response, next: NextFunction) => {
     try {

@@ -10,6 +10,6 @@ router.get('/follows/:id', getUserFollows);
 router.get('/statistics', getAllVacationsFollows);
 router.get('/csv', sendCSV);
 router.post('/', add);
-router.delete('/:id', remove);
+router.delete('/:userId/:vacationId', remove);
 
 export default router;

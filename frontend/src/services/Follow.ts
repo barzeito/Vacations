@@ -17,8 +17,8 @@ class FollowService {
         return addedFollow;
     }
 
-    public async unFollow(vacationId: string): Promise<void> {
-        await axios.delete(appConfig.followUrl + `/${vacationId}`);
+    public async unFollow(userId: string, vacationId: string): Promise<void> {
+        await axios.delete(appConfig.followUrl + `/${userId}/${vacationId}`);
         const action: FollowAction = {
             type: FollowActionType.deleteFollow,
             payload: vacationId

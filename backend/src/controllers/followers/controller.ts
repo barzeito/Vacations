@@ -27,7 +27,7 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
 export const getUserFollows = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const follows = await getModel().getUserFollows(req.params.id);
-        if (follows.length === 0) {
+        if (follows.length < 0) {
             return next();
         }
         res.json(follows);
@@ -47,7 +47,7 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
 
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const isDeleted = await getModel().unFollow(req.params.id)
+        const isDeleted = await getModel().unFollow(req.body)
         if (!isDeleted) return next(createHttpError(NotFound(`User not found.`)));
         res.sendStatus(StatusCodes.NO_CONTENT)
     } catch (err) {
@@ -58,7 +58,6 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
 export const getVacationsFollowsNumber = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const followers = await getModel().getVacationsFollowsNumber(req.params.id);
-        if (!followers) return next();
         res.json(followers);
     } catch (err) {
         next(err)

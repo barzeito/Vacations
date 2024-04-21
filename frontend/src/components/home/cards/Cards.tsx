@@ -10,6 +10,7 @@ import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
 import { NavLink, useParams } from "react-router-dom";
 import authService from "../../../services/Auth";
+import { followStore } from "../../../redux/FollowState";
 
 //TODO: Fix followsCounter
 
@@ -26,6 +27,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
     const [user, setUser] = useState<User>();
     const [liked, setLiked] = useState(false);
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
+    const [counter, setCounter] = useState<number>(0);
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -89,13 +91,55 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         ifAdmin();
     }, [user]);
 
+    useEffect(() => {
+        const token = authStore.getState().token;
+        if (token) {
+            const user = jwtDecode<{ user: User }>(token).user;
+            setUser(user);
+        }
+
+        const unsubscribe = authStore.subscribe(() => {
+            const token = authStore.getState().token;
+            if (token) {
+                const user = jwtDecode<{ user: User }>(token).user;
+                setUser(user);
+            } else {
+                setUser(undefined)
+            }
+        });
+
+        return unsubscribe;
+    }, [])
+
+    useEffect(() => {
+        async function followCounter() {
+            const vacationId = props.vacation.vacationId;
+            if (vacationId) {
+                const getCounter = await followService.getVacationFollowsNumber(vacationId);
+                setCounter(getCounter);
+            }
+            const unsubscribe = followStore.subscribe(async () => {
+                if (vacationId) {
+                    try {
+                        const getCounter = await followService.getVacationFollowsNumber(vacationId);
+                        setCounter(getCounter);
+                    } catch (error) {
+                        notifyService.error("Failed to check follow status");
+                    }
+                }
+            })
+            return unsubscribe;
+        }
+        followCounter();
+    }, [])
+
     return (
         <div className="Cards">
             <div className="Card">
                 <div className="cardTop">
                     {!isAdmin && <label className={`cardFollow ${liked ? 'liked' : ''}`}>
                         <input type="checkbox" checked={liked} onChange={handleLike} />
-                        {liked ? 'Liked' : 'Like'}(0)
+                        {liked ? 'Liked' : 'Like'}({counter})
                     </label>}
                     {isAdmin && <NavLink to={`/panel/edit`} className="EditNav">Edit</NavLink>}
                     <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>

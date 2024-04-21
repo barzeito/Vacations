@@ -34,11 +34,12 @@ class Followers implements Model {
         return this.getOne(userId);
     }
 
-    public async unFollow(id: string): Promise<boolean> {
+    public async unFollow(follower: DTO): Promise<boolean> {
+        const { userId, vacationId } = follower;
         const result: OkPacketParams = await query(`
             DELETE FROM followers
-            WHERE       vacationId = ?
-        `, [id]);
+            WHERE       userId = ? AND  vacationId = ?
+        `, [userId, vacationId]);
         return Boolean(result.affectedRows);
     }
 

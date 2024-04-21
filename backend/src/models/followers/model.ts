@@ -5,7 +5,7 @@ export default interface Model {
     getOne(id: string): Promise<DTO>;
     getUserFollows(id: string): Promise<DTO[]>;
     follow(follower: DTO): Promise<DTO>;
-    unFollow(id: string): Promise<boolean>;
+    unFollow(follower: DTO): Promise<boolean>;
     getVacationsFollowsNumber(id: string): Promise<number>;
     getAllVacationsFollows(): Promise<DTO[]>
 

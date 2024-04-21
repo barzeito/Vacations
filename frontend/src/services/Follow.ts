@@ -33,9 +33,14 @@ class FollowService {
     }
 
     public async getVacationFollowsNumber(vacationId: string): Promise<number> {
-        const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/counter/${vacationId}`);
-        const followsCounter = response.data.length;
-        return followsCounter;
+        try {
+            const response = await axios.get<number>(`${appConfig.followUrl}/counter/${vacationId}`);
+            const followsCounter = response.data;
+            return followsCounter;
+        } catch (error) {
+            console.error("Error fetching vacation follows:", error);
+            throw error;
+        }
     }
 
     public async getAllVacationsFollows(): Promise<FollowModel[]> {
@@ -46,25 +51,25 @@ class FollowService {
 
     public async sendCSV(): Promise<void> {
 
-            const response = await axios.get(`${appConfig.followUrl}/csv`, {
-                responseType: 'blob', // Set the response type to blob to handle binary data
-            });
-            // Create a blob object from the response data
-            const blob = new Blob([response.data], { type: 'text/csv' });
-            // Create a temporary URL for the blob object
-            const url = window.URL.createObjectURL(blob);
-            // Create a temporary link element
-            const link = document.createElement('a');
-            // Set the link's href attribute to the temporary URL
-            link.href = url;
-            // Set the link's download attribute to specify the file name
-            link.setAttribute('download', 'Vacations.csv');
-            // Append the link to the document body
-            document.body.appendChild(link);
-            // Programmatically trigger a click event on the link
-            link.click();
-            // Remove the link from the document body
-            document.body.removeChild(link);
+        const response = await axios.get(`${appConfig.followUrl}/csv`, {
+            responseType: 'blob', // Set the response type to blob to handle binary data
+        });
+        // Create a blob object from the response data
+        const blob = new Blob([response.data], { type: 'text/csv' });
+        // Create a temporary URL for the blob object
+        const url = window.URL.createObjectURL(blob);
+        // Create a temporary link element
+        const link = document.createElement('a');
+        // Set the link's href attribute to the temporary URL
+        link.href = url;
+        // Set the link's download attribute to specify the file name
+        link.setAttribute('download', 'Vacations.csv');
+        // Append the link to the document body
+        document.body.appendChild(link);
+        // Programmatically trigger a click event on the link
+        link.click();
+        // Remove the link from the document body
+        document.body.removeChild(link);
     }
 }
 const followService = new FollowService();

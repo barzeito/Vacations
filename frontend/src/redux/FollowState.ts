@@ -4,6 +4,8 @@ import FollowModel from "../models/FollowModel";
 // 1. Global state for products
 export class FollowState {
     public followers: FollowModel[] = [];
+    public vacationId: string = '';
+
 }
 
 // 2. Action Type

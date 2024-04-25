@@ -6,11 +6,17 @@ import VacationModel from "../../../models/VacationModel"; // Import VacationMod
 import followService from "../../../services/Follow";
 import vacationService from "../../../services/Vacation"; // Import vacationService
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import authService from "../../../services/Auth";
+import UserModel from "../../../models/UserModel";
 
 function Panel(): JSX.Element {
 
     const [followData, setFollowData] = useState<FollowModel[]>([]);
     const [vacationData, setVacationData] = useState<VacationModel[]>([]);
+    const [totalUsers, setTotalUsers] = useState<UserModel[]>([]);
+    const [totalFollows, setTotalFollows] = useState<FollowModel[]>([]);
+
+
 
     useEffect(() => {
         async function fetchData() {
@@ -18,8 +24,14 @@ function Panel(): JSX.Element {
                 const data = await followService.getAllVacationsFollows();
                 setFollowData(data);
 
-                const vacationData = await vacationService.getAll(); // Assuming you have a function to fetch all vacations
+                const vacationData = await vacationService.getAll();
                 setVacationData(vacationData);
+
+                const usersData = await authService.getAllUsers();
+                setTotalUsers(usersData)
+
+                const followData = await followService.getAllFollowed();
+                setTotalFollows(followData)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -41,11 +53,11 @@ function Panel(): JSX.Element {
                     </div>
                     <div className="statCard">
                         <p>Total Users</p>
-                        <span>100</span>
+                        <span>{totalUsers.length}</span>
                     </div>
                     <div className="statCard">
                         <p>Total Follows</p>
-                        <span>100</span>
+                        <span>{totalFollows.length}</span>
                     </div>
                 </div>
                 <div className="Chart">

@@ -3,8 +3,15 @@ import SignUpModel from "../models/SignupModel";
 import appConfig from "../utils/AppConfig";
 import { AuthAction, AuthActionType, authStore } from "../redux/AuthState";
 import LoginModel from "../models/LoginModel";
+import UserModel from "../models/UserModel";
 
 class AuthService {
+    public async getAllUsers(): Promise<UserModel[]> {
+        const response = await axios.get<UserModel[]>(appConfig.usersUrl);
+        const users = response.data;
+        return users;
+    }
+
     public async signUp(signup: SignUpModel): Promise<string> {
         const response = await axios.post<{ jwt: string }>(appConfig.signupUrl, signup);
         const token = response.data.jwt;

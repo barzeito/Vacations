@@ -49,6 +49,11 @@ class FollowService {
         return followsCounter;
     }
 
+    public async getAllFollowed(): Promise<FollowModel[]> {
+        const response = await axios.get<FollowModel[]>(appConfig.followUrl);
+        const likedVacations = response.data;
+        return likedVacations;
+    }
     public async sendCSV(): Promise<void> {
 
         const response = await axios.get(`${appConfig.followUrl}/csv`, {

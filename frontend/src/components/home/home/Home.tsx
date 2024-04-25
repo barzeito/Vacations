@@ -19,8 +19,7 @@ function Home(): JSX.Element {
     const params = useParams();
     const vacationId = String(params.vacationId);
 
-    const navigate = useNavigate();
-    const [user, setUser] = useState<User>();
+    const [user] = useState<User>();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -37,17 +36,6 @@ function Home(): JSX.Element {
         return unsubscribe;
 
     }, []);
-
-    useEffect(() => {
-        const token = authStore.getState().token;
-        // const user = jwtDecode<{ user: User }>(token).user;
-        // setUser(user);
-        if (!token) {
-            notifyService.error('You must be logged in to continue.')
-            navigate('/login');
-        }
-    }, [])
-
 
     async function getAllByStartDate() {
         try {

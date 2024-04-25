@@ -8,7 +8,7 @@ import FollowModel from "../../../models/FollowModel";
 import notifyService from "../../../services/Notify";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import authService from "../../../services/Auth";
 import { followStore } from "../../../redux/FollowState";
 

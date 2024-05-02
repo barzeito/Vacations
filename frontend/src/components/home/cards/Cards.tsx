@@ -8,7 +8,7 @@ import FollowModel from "../../../models/FollowModel";
 import notifyService from "../../../services/Notify";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import authService from "../../../services/Auth";
 import { followStore } from "../../../redux/FollowState";
 
@@ -29,14 +29,34 @@ function Cards(props: vacationsCardsProps): JSX.Element {
     const [isAdmin, setIsAdmin] = useState<boolean>(false);
     const [counter, setCounter] = useState<number>(0);
 
+    // useEffect(() => {
+    //     const token = authStore.getState().token;
+    //     if (token) {
+    //         const user = jwtDecode<{ user: User }>(token).user;
+    //         setUser(user);
+    //     }
+    // }, []);
+
+
     useEffect(() => {
         const token = authStore.getState().token;
         if (token) {
             const user = jwtDecode<{ user: User }>(token).user;
             setUser(user);
         }
-    }, []);
 
+        const unsubscribe = authStore.subscribe(() => {
+            const token = authStore.getState().token;
+            if (token) {
+                const user = jwtDecode<{ user: User }>(token).user;
+                setUser(user);
+            } else {
+                setUser(undefined)
+            }
+        });
+
+        return unsubscribe;
+    }, [])
 
     // Handle the Follow button
     async function handleLike(event: React.ChangeEvent<HTMLInputElement>) {
@@ -91,26 +111,6 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         }
         ifAdmin();
     }, [user]);
-
-    useEffect(() => {
-        const token = authStore.getState().token;
-        if (token) {
-            const user = jwtDecode<{ user: User }>(token).user;
-            setUser(user);
-        }
-
-        const unsubscribe = authStore.subscribe(() => {
-            const token = authStore.getState().token;
-            if (token) {
-                const user = jwtDecode<{ user: User }>(token).user;
-                setUser(user);
-            } else {
-                setUser(undefined)
-            }
-        });
-
-        return unsubscribe;
-    }, [])
 
     useEffect(() => {
         async function followCounter() {

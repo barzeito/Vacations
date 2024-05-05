@@ -35,16 +35,19 @@ class FollowService {
 
     public async getUserFollowsFilter(userId: string): Promise<VacationModel[]> {
         try {
-            const response = await axios.get<VacationModel[]>(`${appConfig.followUrl}/follows/${userId}`);
-            const likedVacations = response.data;
+            const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/follows/${userId}`);
+            const followedVacations = response.data;
 
-            const vacations = await Promise.all(likedVacations.map(async (vacation: VacationModel) => {
-                const vacationsResponse = await axios.get<VacationModel>(`${appConfig.vacationsUrl}/${vacation.vacationId}`);
-                return vacationsResponse.data
-            }))
+            const vacations: VacationModel[] = [];
+
+            for (const follow of followedVacations) {
+                const vacationResponse = await axios.get<VacationModel>(`${appConfig.vacationsUrl}/${follow.vacationId}`);
+                vacations.push(vacationResponse.data);
+                console.log(vacationResponse.data)
+            }
             return vacations;
         } catch (error) {
-            throw new Error('Failed to fetch liked vacations');
+            throw new Error('Failed to fetch followed vacations');
         }
     }
 

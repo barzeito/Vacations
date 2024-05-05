@@ -14,7 +14,7 @@ export default async function uploadImage(req: Request, res: Response, next: Nex
     try {
         const fileAbsolutePath = path.resolve(config.get<string>('app.images.path'), imageName);
         await mvPromisify(fileAbsolutePath);
-        req.body.image = imageName;
+        req.body.imageUrl = imageName;
         return next();
     } catch (err) {
         next(err)

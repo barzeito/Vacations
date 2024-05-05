@@ -2,6 +2,7 @@ import axios from "axios";
 import appConfig from "../utils/AppConfig";
 import FollowModel from "../models/FollowModel";
 import { FollowAction, FollowActionType, followStore } from "../redux/FollowState";
+import VacationModel from "../models/VacationModel";
 
 class FollowService {
 
@@ -32,6 +33,24 @@ class FollowService {
         return likedVacations;
     }
 
+    public async getUserFollowsFilter(userId: string): Promise<VacationModel[]> {
+        try {
+            const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/follows/${userId}`);
+            const followedVacations = response.data;
+
+            const vacations: VacationModel[] = [];
+
+            for (const follow of followedVacations) {
+                const vacationResponse = await axios.get<VacationModel>(`${appConfig.vacationsUrl}/${follow.vacationId}`);
+                vacations.push(vacationResponse.data);
+                console.log(vacationResponse.data)
+            }
+            return vacations;
+        } catch (error) {
+            throw new Error('Failed to fetch followed vacations');
+        }
+    }
+
     public async getVacationFollowsNumber(vacationId: string): Promise<number> {
         try {
             const response = await axios.get<number>(`${appConfig.followUrl}/counter/${vacationId}`);
@@ -54,8 +73,8 @@ class FollowService {
         const likedVacations = response.data;
         return likedVacations;
     }
-    public async sendCSV(): Promise<void> {
 
+    public async sendCSV(): Promise<void> {
         const response = await axios.get(`${appConfig.followUrl}/csv`, {
             responseType: 'blob', // Set the response type to blob to handle binary data
         });

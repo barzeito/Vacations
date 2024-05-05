@@ -15,14 +15,11 @@ type User = {
 
 function Home(): JSX.Element {
 
-
-    //TODO: Fix getAllByFollow function
-    //TODO: Add on Vacations filter
-    //TODO: Fix Pagination
-
     const [user, setUser] = useState<User>();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
-    const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [followingFilter, setFollowingFilter] = useState<boolean>(false);
+    const [notStartedFilter, setNotStartedFilter] = useState<boolean>(false);
+    const [startedFilter, setStartedFilter] = useState<boolean>(false);
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -42,17 +39,26 @@ function Home(): JSX.Element {
         })
 
         return unsubscribe;
-
     }, []);
 
     async function getAllByStartDateFilter() {
         try {
             const date = new Date();
             const todayDate = date.toISOString().slice(0, 10);
-            const vacations = await vacationService.getVacationByStartDate(todayDate);
-            setVacations(vacations);
-            notifyService.success('Filter applied')
-            setIsChecked(true);
+            let filteredVacations: VacationModel[] = [];
+
+            if (notStartedFilter) {
+                resetFilters();
+                setNotStartedFilter(false);
+            } else {
+                filteredVacations = await vacationService.getVacationByStartDate(todayDate);
+                setNotStartedFilter(true);
+                setStartedFilter(false);
+                setFollowingFilter(false);
+            }
+
+            setVacations(filteredVacations);
+            notifyService.success('Filter applied');
         } catch (error) {
             notifyService.error(error);
         }
@@ -62,10 +68,20 @@ function Home(): JSX.Element {
         try {
             const date = new Date();
             const todayDate = date.toISOString().slice(0, 10);
-            const vacations = await vacationService.getVacationByBetweenDates(todayDate);
-            setVacations(vacations);
-            notifyService.success('Filter applied')
-            setIsChecked(true);
+            let filteredVacations: VacationModel[] = [];
+
+            if (startedFilter) {
+                resetFilters();
+                setStartedFilter(false);
+            } else {
+                filteredVacations = await vacationService.getVacationByBetweenDates(todayDate);
+                setStartedFilter(true);
+                setNotStartedFilter(false);
+                setFollowingFilter(false);
+            }
+
+            setVacations(filteredVacations);
+            notifyService.success('Filter applied');
         } catch (error) {
             notifyService.error(error);
         }
@@ -74,9 +90,20 @@ function Home(): JSX.Element {
     async function getAllByFollowFilter() {
         try {
             if (user) {
-                const vacations = await followService.getUserFollows(user.userId);
-                console.log(vacations);
-                setVacations(vacations);
+                let filteredVacations: VacationModel[] = [];
+
+                if (followingFilter) {
+                    resetFilters();
+                    setFollowingFilter(false);
+                } else {
+                    filteredVacations = await followService.getUserFollowsFilter(user.userId);
+                    setFollowingFilter(true);
+                    setStartedFilter(false);
+                    setNotStartedFilter(false);
+                }
+
+                setVacations(filteredVacations);
+                console.log(filteredVacations);
                 notifyService.success('Filter applied');
             }
         } catch (error) {
@@ -84,13 +111,14 @@ function Home(): JSX.Element {
         }
     }
 
-
     async function resetFilters() {
         try {
             const vacations = await vacationService.getAll()
             setVacations(vacations);
             notifyService.success('Filters Cleared')
-            setIsChecked(false);
+            setFollowingFilter(false);
+            setNotStartedFilter(false);
+            setStartedFilter(false);
         } catch (error) {
             notifyService.error(error);
         }
@@ -100,9 +128,18 @@ function Home(): JSX.Element {
         <div className="Home">
             <div className="Filters">
                 <h4>Filters: </h4>
-                <label><input type="checkbox" onChange={getAllByFollowFilter} />Following Vacations</label>
-                <label><input type="checkbox" onChange={getAllByStartDateFilter} />Not Started Vacations</label>
-                <label><input type="checkbox" onChange={getAllByBetweenDatesFilter} />Started Vacations</label>
+                <label>
+                    <input type="checkbox" checked={followingFilter} onChange={getAllByFollowFilter} />
+                    Following Vacations
+                </label>
+                <label>
+                    <input type="checkbox" checked={notStartedFilter} onChange={getAllByStartDateFilter} />
+                    Not Started Vacations
+                </label>
+                <label>
+                    <input type="checkbox" checked={startedFilter} onChange={getAllByBetweenDatesFilter} />
+                    Started Vacations
+                </label>
                 <button onClick={resetFilters}>Clear Filters</button>
             </div>
             <div className="HomeCards">

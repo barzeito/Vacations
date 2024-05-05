@@ -27,7 +27,13 @@ class FollowService {
         followStore.dispatch(action);
     }
 
-    public async getUserFollows(userId: string): Promise<VacationModel[]> {
+    public async getUserFollows(userId: string): Promise<FollowModel[]> {
+        const response = await axios.get<FollowModel[]>(`${appConfig.followUrl}/follows/${userId}`);
+        const likedVacations = response.data;
+        return likedVacations;
+    }
+
+    public async getUserFollowsFilter(userId: string): Promise<VacationModel[]> {
         try {
             const response = await axios.get<VacationModel[]>(`${appConfig.followUrl}/follows/${userId}`);
             const likedVacations = response.data;

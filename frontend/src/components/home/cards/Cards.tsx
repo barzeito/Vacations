@@ -12,8 +12,6 @@ import { NavLink } from "react-router-dom";
 import authService from "../../../services/Auth";
 import { followStore } from "../../../redux/FollowState";
 
-//TODO: Fix followsCounter
-
 interface vacationsCardsProps {
     vacation: VacationModel
 }

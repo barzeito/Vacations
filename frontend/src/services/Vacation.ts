@@ -78,7 +78,7 @@ class VacationService {
     }
 
     public async getVacationByBetweenDates(date: string): Promise<VacationModel[]> {
-        const response = await axios.get<VacationModel[]>(`${appConfig.vacationsUrl}/between-dates/${date}`);
+        const response = await axios.get<VacationModel[]>(`${appConfig.vacationsUrl}/between-dates`);
         const vacations = response.data;
         return vacations;
     }

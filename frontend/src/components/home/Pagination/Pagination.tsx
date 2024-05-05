@@ -1,60 +1,62 @@
 import React from 'react';
 import './Pagination.css';
 
-interface PaginationProps {
-    nPages: number;
+interface PaginationControlsProps {
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
     currentPage: number;
+    totalPages: number;
     setCurrentPage: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ nPages, currentPage, setCurrentPage }) => {
-    const pageNumbers = [];
-    for (let i = 1; i <= nPages; i++) {
-        pageNumbers.push(i);
-    }
-
-    const goToNextPage = () => {
-        if (currentPage !== nPages) setCurrentPage(currentPage + 1);
+const Pagination: React.FC<PaginationControlsProps> = ({
+    hasNextPage,
+    hasPrevPage,
+    currentPage,
+    totalPages,
+    setCurrentPage,
+}) => {
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
     };
 
-    const goToPrevPage = () => {
-        if (currentPage !== 1) setCurrentPage(currentPage - 1);
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
     };
+
+    const handlePageClick = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    // Generate an array of page numbers from 1 to totalPages
+    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     return (
         <div className="Pagination">
-            <nav>
-                <ul className='pagination justify-content-center'>
-                    <li className="page-item">
-                        <a className="page-link"
-                            onClick={goToPrevPage}
-                            href='#'>
+            <button
+                className={`page-link ${hasPrevPage ? '' : 'disabled'}`}
+                onClick={handlePrevPage}
+                disabled={!hasPrevPage}>
+                Prev
+            </button>
 
-                            Previous
-                        </a>
-                    </li>
-                    {pageNumbers.map(pgNumber => (
-                        <li key={pgNumber}
-                            className={`page-item ${currentPage === pgNumber ? 'active' : ''} `} >
+            <div className="pagination-text">
+                {pageNumbers.map((page) => (
+                    <button
+                        key={page}
+                        className={`page-link ${currentPage === page ? 'active' : ''}`}
+                        onClick={() => handlePageClick(page)}>
+                        {page}
+                    </button>
+                ))}
+            </div>
 
-                            <a onClick={() => setCurrentPage(pgNumber)}
-                                className='page-link'
-                                href='#'>
-
-                                {pgNumber}
-                            </a>
-                        </li>
-                    ))}
-                    <li className="page-item">
-                        <a className="page-link"
-                            onClick={goToNextPage}
-                            href='#'>
-
-                            Next
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <button
+                className={`page-link ${hasNextPage ? '' : 'disabled'}`}
+                onClick={handleNextPage}
+                disabled={!hasNextPage}>
+                Next
+            </button>
         </div>
     );
 };

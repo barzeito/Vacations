@@ -8,6 +8,7 @@ import vacationService from "../../../services/Vacation";
 import { vacationsStore } from "../../../redux/VacationState";
 import followService from "../../../services/Follow";
 import { jwtDecode } from "jwt-decode";
+import Pagination from "../Pagination/Pagination";
 
 type User = {
     userId: string,
@@ -20,6 +21,8 @@ function Home(): JSX.Element {
     const [followingFilter, setFollowingFilter] = useState<boolean>(false);
     const [notStartedFilter, setNotStartedFilter] = useState<boolean>(false);
     const [startedFilter, setStartedFilter] = useState<boolean>(false);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const perPage = 10;
 
     useEffect(() => {
         const token = authStore.getState().token;
@@ -124,6 +127,15 @@ function Home(): JSX.Element {
         }
     }
 
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
+
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+    const totalPages = Math.ceil(vacations.length / perPage);
+    const paginatedVacations = vacations.slice(start, end);
+
     return (
         <div className="Home">
             <div className="Filters">
@@ -143,8 +155,15 @@ function Home(): JSX.Element {
                 <button onClick={resetFilters}>Clear Filters</button>
             </div>
             <div className="HomeCards">
-                {vacations.map(v => <Cards key={v.vacationId} vacation={v} />)}
+                {paginatedVacations.map(v => <Cards key={v.vacationId} vacation={v} />)}
             </div>
+            <Pagination
+                hasNextPage={end < vacations.length}
+                hasPrevPage={currentPage > 1}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                setCurrentPage={handlePageChange}
+            />
         </div>
     );
 }

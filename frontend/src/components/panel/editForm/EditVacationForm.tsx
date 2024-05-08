@@ -1,5 +1,5 @@
 import { Control, useForm, useWatch } from "react-hook-form";
-import "./EditVacationPanel.css";
+import "./EditVacationForm.css";
 import VacationModel from "../../../models/VacationModel";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

@@ -23,4 +23,4 @@ export const patchVacationValidator = Joi.object<DTO>({
     imageFile: Joi.object({
         mimetype: Joi.string().valid('image/jpg', 'image/jpeg', 'image/png'),
     }).unknown(true).optional()
-});
+}).options({ allowUnknown: true });

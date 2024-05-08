@@ -9,6 +9,7 @@ import { vacationsStore } from "../../../redux/VacationState";
 import followService from "../../../services/Follow";
 import { jwtDecode } from "jwt-decode";
 import Pagination from "../Pagination/Pagination";
+import Spinner from "../../common/spinner/spinner";
 
 type User = {
     userId: string,
@@ -155,6 +156,7 @@ function Home(): JSX.Element {
                 <button onClick={resetFilters}>Clear Filters</button>
             </div>
             <div className="HomeCards">
+                {vacations.length === 0 && <Spinner />}
                 {paginatedVacations.map(v => <Cards key={v.vacationId} vacation={v} />)}
             </div>
             <Pagination

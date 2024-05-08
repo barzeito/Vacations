@@ -14,6 +14,7 @@
     position: relative;
 }
 
+/* Edit and Delete Buttons Styles */
 .Edit,
 .Delete {
     position: absolute;
@@ -51,23 +52,7 @@
     justify-content: space-between;
 }
 
-.EditCardFollow.liked {
-    padding: 0 12px;
-    border-color: #cc4b37a2;
-    background-color: #cc4b37a2;
-    color: white;
-}
-
-.EditCardFollow input[type="checkbox"] {
-    display: none;
-}
-
-.EditCardFollow:hover {
-    background-color: #cc4b37;
-    border-color: #cc4b37;
-    color: white;
-}
-
+/* Edit Card Image Styles */
 .EditCardImage {
     width: 100%;
     height: auto;
@@ -76,6 +61,7 @@
     max-height: 150px;
 }
 
+/* Edit Card Name Styles */
 .EditCardName {
     position: absolute;
     bottom: 45px;
@@ -86,6 +72,7 @@
     font-size: 20px;
 }
 
+/* Edit Card Dates Styles */
 .EditCardDates {
     position: absolute;
     bottom: 0;
@@ -98,6 +85,7 @@
     box-sizing: border-box;
 }
 
+/* Edit Card Description Styles */
 .EditCardDescription {
     background-color: white;
     color: rgb(111, 107, 107);
@@ -107,6 +95,7 @@
     overflow-y: auto;
 }
 
+/* Edit Card Price Styles */
 .EditCardPrice {
     background-color: #2D8FCD;
     color: white;
@@ -120,6 +109,7 @@
     transform: translateX(-50%);
 }
 
+/* Delete Pop-Up Styles */
 .DeleteContainer {
     position: fixed;
     top: 0;

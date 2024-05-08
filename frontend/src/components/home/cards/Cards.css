@@ -31,11 +31,17 @@
     text-decoration: none;
 }
 
-.cardFollow.liked {
+.cardFollow.liked,
+.like {
     padding: 0 12px;
+    width: auto;
+    gap: 3px;
     border-color: #cc4b37a2;
     background-color: #cc4b37a2;
     color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 14px;
 }
 
 .cardFollow input[type="checkbox"] {
@@ -47,6 +53,10 @@
     background-color: #cc4b37;
     border-color: #cc4b37;
     color: white;
+}
+
+.EditNav {
+    gap: 3px;
 }
 
 .cardImage {
@@ -77,6 +87,10 @@
     border-radius: 0 0 6px 6px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.bi-calendar2-minus {
+    padding: 5px;
 }
 
 .cardDescription {

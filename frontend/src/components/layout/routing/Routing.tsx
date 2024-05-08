@@ -6,7 +6,7 @@ import Login from "../../auth/login/Login";
 import Panel from "../../panel/panel/Panel";
 import AddVacation from "../../panel/addVacation/AddVacation";
 import EditVacation from "../../panel/editVacation/EditVacation";
-import EditVacationPanel from "../../panel/editVacationPanel/EditVacationPanel";
+import EditVacationPanel from "../../panel/editForm/EditVacationForm";
 import SendCSV from "../../panel/sendCSV/SendCSV";
 import authService from "../../../services/Auth";
 import { useEffect, useState } from "react";

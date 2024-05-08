@@ -17,7 +17,7 @@ router.get('/start-date/:date', getAllByStartDate);
 router.get('/between-dates', getAllByBetweenDates);
 router.post('/', enforceAdmin, addImageToBody, validate(addVacationValidator), uploadImage, add);
 router.put('/:id', enforceAdmin, addImageToBody, validate(putVacationValidator), uploadImage, update);
-router.patch('/:id', enforceAdmin, addImageToBody, uploadImage, patch);
+router.patch('/:id', enforceAdmin, addImageToBody, validate(patchVacationValidator), uploadImage, patch);
 router.delete('/:id', enforceAdmin, remove);
 
 export default router;

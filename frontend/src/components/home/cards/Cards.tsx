@@ -11,6 +11,7 @@ import { jwtDecode } from "jwt-decode";
 import { NavLink } from "react-router-dom";
 import authService from "../../../services/Auth";
 import { followStore } from "../../../redux/FollowState";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 interface vacationsCardsProps {
     vacation: VacationModel
@@ -136,14 +137,15 @@ function Cards(props: vacationsCardsProps): JSX.Element {
         <div className="Cards">
             <div className="Card">
                 <div className="cardTop">
-                    {!isAdmin && <label className={`cardFollow ${liked ? 'liked' : ''}`}>
+                    {!isAdmin && <label className={`cardFollow ${liked ? 'liked' : 'like'}`}>
                         <input type="checkbox" checked={liked} onChange={handleLike} />
-                        {liked ? 'Liked' : 'Like'}({counter})
+                        {liked ? <i className="bi bi-heart-fill">Like</i> : <i className="bi bi-heart">Like</i>} ({counter})
                     </label>}
-                    {isAdmin && <NavLink to={`/panel/edit`} className="EditNav">Edit</NavLink>}
+                    {isAdmin && <NavLink to={`/panel/edit`} className="EditNav"><i className="bi bi-pencil-square"></i>Edit</NavLink>}
                     <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
                     <div className="cardName">{props.vacation.destination}</div>
-                    <div className="cardDates">{props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>
+                    <div className="cardDates"><i className="bi bi-calendar2-minus"></i>
+                        {props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>
                 </div>
                 <div className="cardDescription">{props.vacation.description}</div>
                 <div className="cardPrice">{formatPrice(props.vacation.price !== undefined ? props.vacation.price.toString() : undefined)}</div>

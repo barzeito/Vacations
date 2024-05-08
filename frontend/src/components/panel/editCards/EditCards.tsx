@@ -33,12 +33,13 @@ function EditCards(props: vacationsCardsProps): JSX.Element {
             <div className="EditCard">
                 <div className="EditCardTop">
                     <div className="EditOptions">
-                        <NavLink to={`/panel/edit/${vacationId}`} className="Edit">Edit</NavLink>
-                        <button className="Delete" onClick={() => setShowDelete(true)}>Delete</button>
+                        <NavLink to={`/panel/edit/${vacationId}`} className="Edit"><i className="bi bi-pencil-square"></i>Edit</NavLink>
+                        <button className="Delete" onClick={() => setShowDelete(true)}><i className="bi bi-trash3"></i>
+                            Delete</button>
                     </div>
                     <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
                     <div className="EditCardName">{props.vacation.destination}</div>
-                    <div className="EditCardDates">{props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>
+                    <div className="EditCardDates"><i className="bi bi-calendar2-minus"></i>{props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>
                 </div>
                 <div className="EditCardDescription">{props.vacation.description}</div>
                 <div className="EditCardPrice">{formatPrice(props.vacation.price !== undefined ? props.vacation.price.toString() : undefined)}</div>

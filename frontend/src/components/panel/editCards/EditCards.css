@@ -31,7 +31,12 @@
 }
 
 .Delete {
-    left: 250px
+    left: 230px;
+    gap: 3px;
+}
+
+.Edit {
+    gap: 3px;
 }
 
 .Edit:hover,

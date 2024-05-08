@@ -49,15 +49,15 @@ function Panel(): JSX.Element {
                 <div className="AnaStats">
                     <div className="statCard">
                         <p>Total Vacations</p>
-                        <span>{vacationData.length}</span>
+                        <span><i className="bi bi-backpack2"></i> {vacationData.length}</span>
                     </div>
                     <div className="statCard">
                         <p>Total Users</p>
-                        <span>{totalUsers.length}</span>
+                        <span><i className="bi bi-people"></i> {totalUsers.length}</span>
                     </div>
                     <div className="statCard">
                         <p>Total Follows</p>
-                        <span>{totalFollows.length}</span>
+                        <span><i className="bi bi-heart"></i>  {totalFollows.length}</span>
                     </div>
                 </div>
                 <div className="Chart">

@@ -5,6 +5,7 @@
     height: 100vh;
 }
 
+/* Login Container Styles */
 .LoginContainer {
     display: flex;
     align-items: center;
@@ -12,6 +13,7 @@
     max-width: 62.5rem;
 }
 
+/* Login Form Styles */
 .LoginForm {
     width: 50%;
     padding: 20px;
@@ -56,11 +58,13 @@
     background-color: #0e5a9c;
 }
 
+/* Account Styles */
 .LoginForm .account {
     text-align: center;
     margin: 10px;
 }
 
+/* Link Styles */
 .LoginForm .link {
     text-decoration: none;
     font-weight: 540;
@@ -72,6 +76,7 @@
     cursor: pointer;
 }
 
+/* Login Text Styles */
 .LoginText {
     width: 50%;
     padding: 20px;
@@ -91,12 +96,14 @@
     line-height: 1.5;
 }
 
+/* Error Message Styles */
 .Login span {
     color: #dc3545;
     font-size: 0.9em;
     margin-bottom: 10px;
 }
 
+/* Media Query for Responsive Design */
 @media only screen and (max-width: 768px) {
     .LoginContainer {
         flex-direction: column;

@@ -8,6 +8,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Edit Vacation Panel Form Styles */
 .EditVacationPanel h2 {
     text-align: center;
     margin-top: 0;
@@ -24,6 +25,7 @@
     margin-bottom: 5px;
 }
 
+/* Edit Vacation Panel Input Styles */
 .EditVacationPanel input[type="text"],
 .EditVacationPanel textarea,
 .EditVacationPanel input[type="date"],
@@ -44,6 +46,7 @@
     resize: vertical;
 }
 
+/* Edit Vacation Panel Button Styles */
 .EditVacationPanel button,
 .back-btn {
     margin-top: 10px;
@@ -62,6 +65,7 @@
     background-color: #0056b3;
 }
 
+/* Error Message Styles */
 .EditVacationPanel span {
     color: #dc3545;
     font-size: 0.9em;

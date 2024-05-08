@@ -5,6 +5,7 @@
     height: 100vh;
 }
 
+/* SignUp Container Styles */
 .SignUp .SignUpContainer {
     display: flex;
     justify-content: center;
@@ -14,6 +15,7 @@
     max-width: 62.5rem;
 }
 
+/* SignUp Form Styles */
 .SignUp .SignUpForm {
     width: 50%;
     padding: 20px;
@@ -59,17 +61,20 @@
     background-color: #0e5a9c;
 }
 
+/* Error Message Styles */
 .SignUp .SignUpForm span {
     color: #dc3545;
     font-size: 0.9em;
     margin-bottom: 10px;
 }
 
+/* Account Styles */
 .SignUpForm .account {
     text-align: center;
     margin: 10px;
 }
 
+/* Link Styles */
 .SignUpForm .link {
     text-decoration: none;
     font-weight: 540;

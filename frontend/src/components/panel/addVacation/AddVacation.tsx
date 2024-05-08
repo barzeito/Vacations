@@ -43,7 +43,7 @@ function AddVacation(): JSX.Element {
                     })} /><span>{formState.errors.destination?.message}</span>
 
                     <label>Description:</label>
-                    <input type="text"{...register('description', {
+                    <textarea {...register('description', {
                         minLength: { value: 6, message: 'Minimum length is 6 characters' },
                         required: {
                             value: true,

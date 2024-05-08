@@ -8,7 +8,7 @@ export const signupValidator = Joi.object<UserDTO>({
         'any.required': 'Email is required',
         'string.pattern.base': 'Please enter a valid email address',
     }),
-    password: Joi.string().min(6).required().messages({
+    password: Joi.string().min(4).required().messages({
         'string.empty': 'Password is required',
         'any.required': 'Password is required',
         'string.min': 'Password must be at least {#limit} characters long',
@@ -31,7 +31,7 @@ export const loginValidator = Joi.object<CredentialsDTO>({
         'any.required': 'Email is required',
         'string.pattern.base': 'Please enter a valid email address',
     }),
-    password: Joi.string().min(6).required().messages({
+    password: Joi.string().min(4).required().messages({
         'string.empty': 'Password is required',
         'any.required': 'Password is required',
         'string.min': 'Password must be at least {#limit} characters long',

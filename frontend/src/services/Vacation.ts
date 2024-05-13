@@ -82,6 +82,12 @@ class VacationService {
         const vacations = response.data;
         return vacations;
     }
+
+    public async getVacationByFollow(userId: string): Promise<VacationModel[]> {
+        const response = await axios.get<VacationModel[]>(`${appConfig.vacationsUrl}/follow/${userId}`);
+        const vacations = response.data;
+        return vacations;
+    }
 }
 const vacationService = new VacationService();
 export default vacationService;

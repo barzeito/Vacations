@@ -96,7 +96,7 @@ function Home(): JSX.Element {
                     resetFilters();
                     setFollowingFilter(false);
                 } else {
-                    filteredVacations = await followService.getUserFollowsFilter(user.userId);
+                    filteredVacations = await vacationService.getVacationByFollow(user.userId);
                     setFollowingFilter(true);
                     setStartedFilter(false);
                     setNotStartedFilter(false);

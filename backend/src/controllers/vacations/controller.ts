@@ -105,11 +105,19 @@ export const getAllByStartDate = async (req: Request, res: Response, next: NextF
     }
 }
 
-
 export const getAllByBetweenDates = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacationsByDate = await getModel().getAllByBetweenDates();
         res.json(vacationsByDate.map(convertVacationToImageUrl));
+    } catch (err) {
+        next(err)
+    }
+}
+
+export const getAllByFollow = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const vacationsByFollow = await getModel().getAllByFollow(req.params.id);
+        res.json(vacationsByFollow.map(convertVacationToImageUrl));
     } catch (err) {
         next(err)
     }

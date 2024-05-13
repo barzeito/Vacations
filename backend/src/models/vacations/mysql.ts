@@ -119,6 +119,16 @@ class Vacations implements Model {
         `)
         return vacations;
     }
+
+    public async getAllByFollow(id: string): Promise<DTO[]> {
+        const vacations = await query(`
+            SELECT v.*
+            FROM   followers f   
+            INNER JOIN vacations v ON f.vacationId = v.vacationId 
+            WHERE  f.userId = ?;
+            `, [id])
+        return vacations;
+    }
 }
 
 const vacations = new Vacations();

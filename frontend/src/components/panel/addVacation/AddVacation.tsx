@@ -4,10 +4,12 @@ import VacationModel from "../../../models/VacationModel";
 import vacationService from "../../../services/Vacation";
 import notifyService from "../../../services/Notify";
 import PanelNavigation from "../navigation/Navigation";
+import { useNavigate } from "react-router-dom";
 
 function AddVacation(): JSX.Element {
 
     const { register, handleSubmit, setValue, formState } = useForm<VacationModel>();
+    const navigate = useNavigate();
 
     async function submitVacation(vacation: VacationModel) {
         try {
@@ -19,6 +21,7 @@ function AddVacation(): JSX.Element {
             setValue('startDate', undefined)
             setValue('endDate', undefined)
             setValue('price', undefined)
+            navigate('/panel');
         } catch (err) {
             notifyService.error(err);
         }

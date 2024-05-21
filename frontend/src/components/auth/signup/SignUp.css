@@ -19,9 +19,9 @@
 .SignUp .SignUpForm {
     width: 50%;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--primary);
     border-radius: 5px;
-    background-color: #fff;
+    background-color: var(--background);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -29,12 +29,14 @@
     font-size: 35px;
     margin-bottom: 1.25rem;
     text-align: center;
+    color: white;
 }
 
 .SignUp .SignUpForm label {
     display: block;
     margin-bottom: 5px;
     margin-top: 5px;
+    color: white;
 }
 
 .SignUp .SignUpForm input {
@@ -48,7 +50,7 @@
 .SignUp .SignUpForm button {
     width: 80%;
     padding: 10px;
-    background-color: #2D8FCD;
+    background-color: var(--secondary);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -58,7 +60,7 @@
 }
 
 .SignUp .SignUpForm button:hover {
-    background-color: #0e5a9c;
+    background-color: var(--tranSecondary);
 }
 
 /* Error Message Styles */
@@ -72,13 +74,14 @@
 .SignUpForm .account {
     text-align: center;
     margin: 10px;
+    color: white;
 }
 
 /* Link Styles */
 .SignUpForm .link {
     text-decoration: none;
     font-weight: 540;
-    color: black;
+    color: white;
 }
 
 .SignUpForm .link:hover {

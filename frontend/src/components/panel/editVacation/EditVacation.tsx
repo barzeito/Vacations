@@ -6,6 +6,7 @@ import notifyService from "../../../services/Notify";
 import { vacationsStore } from "../../../redux/VacationState";
 import EditCards from "../editCards/EditCards";
 import Spinner from "../../common/spinner/spinner";
+import PanelNavigation from "../navigation/Navigation";
 
 function EditVacation(): JSX.Element {
     const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -26,6 +27,7 @@ function EditVacation(): JSX.Element {
 
     return (
         <div className="EditVacation">
+            <PanelNavigation />
             <div className="CadsContainer">
                 {vacations.length === 0 && <Spinner />}
                 {vacations.map(v => <EditCards key={v.vacationId} vacation={v} />)}

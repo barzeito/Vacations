@@ -7,6 +7,7 @@ import { authStore } from "../../../redux/AuthState";
 function PanelNavigation(): JSX.Element {
     type User = {
         firstName: string,
+        lastName: string,
     };
 
     const [user, setUser] = useState<User>();
@@ -22,7 +23,7 @@ function PanelNavigation(): JSX.Element {
     return (
         <div className="Navigation">
             <div className="navBar">
-                <h2>Hey, {user?.firstName}</h2>
+                <h2>Hey, {user?.firstName} {user?.lastName}</h2>
                 <p className="roleName">Admin</p>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>

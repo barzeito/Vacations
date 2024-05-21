@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import followService from "../../../services/Follow";
 import notifyService from "../../../services/Notify";
 import "./SendCSV.css";
+import PanelNavigation from "../navigation/Navigation";
 
 function SendCSV(): JSX.Element {
 
@@ -15,6 +16,7 @@ function SendCSV(): JSX.Element {
 
     return (
         <div className="SendCSV">
+            <PanelNavigation />
             <div className="CSV-Content">
                 <h1>CSV Download</h1>
                 <p>Click the download button to get CSV file of the Vacation statistics.</p>

@@ -1,31 +1,32 @@
 .SendCSV {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    background-color: #f8f9fa;
+    justify-content: center;
+    height: 100%;
 }
 
 .CSV-Content {
     text-align: center;
+    margin-top: 10px;
 }
 
 .CSV-Content h1 {
     font-size: 4rem;
-    color: #2D8FCD;
+    color: var(--secondary);
     margin-bottom: 0.5rem;
 }
 
 .CSV-Content p {
     font-size: 1.2rem;
-    color: #6c757d;
+    color: white;
     margin-bottom: 2rem;
 }
 
 .CSV-Content button,
 .CSV-Content .back-btn {
     font-size: 1rem;
-    background-color: #2D8FCD;
+    background-color: var(--secondary);
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
@@ -37,7 +38,7 @@
 
 .CSV-Content button:hover,
 .CSV-Content .back-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--tranSecondary);
 }
 
 .CSV-Content button a {

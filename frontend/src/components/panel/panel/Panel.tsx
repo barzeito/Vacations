@@ -62,15 +62,18 @@ function Panel(): JSX.Element {
                 </div>
                 <div className="Chart">
                     <h2>Vacations Statistics</h2>
-                    <ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height={400}>
                         <BarChart data={followData}>
                             <XAxis
-                                dataKey={(destination) => (typeof destination.Destination === 'string' ? destination.Destination.split(',')[0].trim() : destination.Destination)}
+                                dataKey={(destination) =>
+                                    (typeof destination.Destination === 'string' ? destination.Destination.split(',')[0].trim() : destination.Destination)}
                                 textAnchor="middle"
-                                interval={0} />
-                            <YAxis />
+                                interval={0}
+                                tick={{ fill: '#fff', className: 'custom-xaxis-label' }} />
+                            <YAxis
+                                tick={{ fill: '#fff', className: 'custom-yaxis-label' }} />
                             <Tooltip />
-                            <Bar dataKey="Followers" fill="#2D8FCD" />
+                            <Bar dataKey="Followers" fill="#0083FF" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

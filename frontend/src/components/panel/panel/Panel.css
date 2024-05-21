@@ -1,19 +1,16 @@
-.Panel {
-    display: flex;
-    justify-content: space-around;
-}
-
 .AnaCard {
-    background-color: #fff;
+    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
+    max-width: 400px;
+    width: 100%; 
 }
 
 .AnaContent {
-    flex: 1;
-    padding: 20px;
+    padding: 50px;
+    color: white;
 }
 
 .AnaHeader {
@@ -33,8 +30,8 @@
 }
 
 .statCard {
-    background-color: #2D8FCD;
-    color: #fff;
+    background-color: var(--secondary);
+    color: white;
     border-radius: 10px;
     width: calc(33.33% - 20px);
     box-sizing: border-box;
@@ -49,7 +46,6 @@
 .statCard p {
     font-size: 24px;
     margin: 0;
-
 }
 
 .statCard span {

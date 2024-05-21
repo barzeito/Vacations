@@ -1,3 +1,10 @@
+:root {
+    --primary: #687195;
+    --background: #1E2338;
+    --secondary: #0083FF;
+    --tranSecondary: #0084ff8d;
+}
+
 .HomeCards {
     margin: 50px;
     display: grid;
@@ -10,7 +17,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: -30px;
+    margin-top: 40px;
+    color: white;
 }
 
 .Filters label {
@@ -18,7 +27,7 @@
 }
 
 .Filters button {
-    background-color: #2D8FCD;
+    background-color: var(--secondary);
     color: white;
     text-align: center;
     padding: 5px;

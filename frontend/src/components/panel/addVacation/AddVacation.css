@@ -1,12 +1,15 @@
 .AddVacation {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .FormContent {
-    background-color: #fff;
+    background-color: var(--background);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    border: 1px solid var(--primary);
     padding: 20px;
     width: 25rem;
     margin: 50px auto;
@@ -17,20 +20,24 @@
     margin-top: 10px;
     margin-bottom: 5px;
     font-weight: bold;
+    color: white;
 }
 
 .FormContent input {
     width: calc(100% - 20px);
     padding: 10px;
+    color: black;
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 5px;
 }
 
 .FormContent textarea {
-    width: 95%;
+    width: calc(100% - 20px);
     padding: 8px;
     margin-bottom: 10px;
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 100px;
@@ -38,18 +45,20 @@
 }
 
 .FormContent button {
-    background-color: #2D8FCD;
+    background-color: var(--secondary);
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-left: 9.375rem;
+    margin-top: 10px;
+    display: block;
+    margin: 10px auto;
 }
 
 .FormContent button:hover {
-    background-color: #0056b3;
+    background-color: var(--tranSecondary);
 }
 
 .FormHeader {

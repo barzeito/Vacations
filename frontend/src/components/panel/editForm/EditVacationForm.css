@@ -1,31 +1,33 @@
+/* Styles for EditVacationPanel section */
 .EditVacationPanel {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: var(--background);
+    border: 1px solid var(--primary);
     border-radius: 10px;
     padding: 20px;
     width: 400px;
-    margin: 10px auto;
+    margin: 50px auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Edit Vacation Panel Form Styles */
 .EditVacationPanel h2 {
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
+    color: white;
 }
 
 .EditVacationPanel form {
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .EditVacationPanel label {
     margin-top: 10px;
     margin-bottom: 5px;
+    color: white;
 }
 
-/* Edit Vacation Panel Input Styles */
 .EditVacationPanel input[type="text"],
 .EditVacationPanel textarea,
 .EditVacationPanel input[type="date"],
@@ -35,23 +37,25 @@
     margin-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #f0f0f0;
+    color: black;
 }
 
 .EditVacationPanel textarea {
     padding: 8px;
     margin-bottom: 10px;
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 100px;
     resize: vertical;
 }
 
-/* Edit Vacation Panel Button Styles */
 .EditVacationPanel button,
 .back-btn {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #2D8FCD;
+    background-color: var(--secondary);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -62,10 +66,9 @@
 
 .EditVacationPanel button:hover,
 .back-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--tranSecondary);
 }
 
-/* Error Message Styles */
 .EditVacationPanel span {
     color: #dc3545;
     font-size: 0.9em;

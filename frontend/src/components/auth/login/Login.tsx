@@ -55,7 +55,7 @@ function Login(): JSX.Element {
                     </form>
                 </div>
                 <div className="LoginText">
-                    <h3>Welcome to Vacations</h3>
+                    <h2>Welcome to Vacations</h2>
                     <p>Vacations let you to find the best destination for your next vacation.</p>
                 </div>
             </div>

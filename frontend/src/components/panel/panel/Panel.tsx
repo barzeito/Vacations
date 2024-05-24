@@ -8,6 +8,7 @@ import vacationService from "../../../services/Vacation"; // Import vacationServ
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import authService from "../../../services/Auth";
 import UserModel from "../../../models/UserModel";
+import Spinner from "../../common/spinner/spinner";
 
 function Panel(): JSX.Element {
 
@@ -62,6 +63,7 @@ function Panel(): JSX.Element {
                 </div>
                 <div className="Chart">
                     <h2>Vacations Statistics</h2>
+                    {followData.length < 0 && <Spinner/>}
                     <ResponsiveContainer width="100%" height={400}>
                         <BarChart data={followData}>
                             <XAxis

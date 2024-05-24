@@ -3,6 +3,9 @@
     --background: #1E2338;
     --secondary: #0083FF;
     --tranSecondary: #0084ff8d;
+    --font-primary: 'DM Sans', sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-bold: 600;
 }
 
 .HomeCards {

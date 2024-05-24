@@ -16,6 +16,13 @@ root.render(
         <Helmet>
             <meta charSet="utf-8" />
             <title>Vacations</title>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Vacations</title>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,600;1,9..40,600&display=swap" rel="stylesheet" />
+            </Helmet>
         </Helmet>
         <Layout />
     </BrowserRouter>

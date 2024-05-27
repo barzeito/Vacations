@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import authService from "../../../services/Auth";
 import { followStore } from "../../../redux/FollowState";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import noImage from '../../../assets/images/image-not-found.jpeg';
 
 interface vacationsCardsProps {
     vacation: VacationModel
@@ -142,7 +143,15 @@ function Cards(props: vacationsCardsProps): JSX.Element {
                         {liked ? <i className="bi bi-heart-fill">Like</i> : <i className="bi bi-heart">Like</i>} ({counter})
                     </label>}
                     {isAdmin && <NavLink to={`/panel/edit`} className="EditNav"><i className="bi bi-pencil-square"></i>Edit</NavLink>}
-                    <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
+                    <img
+                        src={props.vacation.imageUrl ? props.vacation.imageUrl : noImage}
+                        className="cardImage"
+                        alt="Vacation Image"
+                        onError={(e) => {
+                            const image = e.target as HTMLImageElement;
+                            image.src = noImage;
+                        }}
+                    />
                     <div className="cardName">{props.vacation.destination}</div>
                     <div className="cardDates"><i className="bi bi-calendar2-minus"></i>
                         {props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>

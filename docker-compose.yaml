@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  database:
+    container_name: vacations-database
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_TCP_PORT=3306
+      - MYSQL_DATABASE=vacations
+    ports:
+      - 3307:3306
+    build: ./database
+    volumes:
+      - vacations-database:/var/lib/mysql
+  backend:
+    container_name: vacations-backend
+    ports:
+      - 8080:8080
+    environment:
+      - NODE_ENV=compose
+    build: ./backend
+  frontend:
+    container_name: vacations-frontend
+    ports:
+      - 3000:80
+    build: ./frontend
+volumes:
+  vacations-database:

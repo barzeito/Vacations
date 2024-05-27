@@ -10,7 +10,7 @@
             "secret": "dragon-secret"
         },
         "images": {
-            "path": "/Users/bar-mac/Desktop/Project3/SavedImages"
+            "path": "./SavedImages"
         }
     },
     "mysql": {

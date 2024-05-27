@@ -7,7 +7,6 @@ import { v4 } from "uuid";
 
 export default async function uploadImage(req: Request, res: Response, next: NextFunction) {
     if (!req.body.imageFile) return next();
-
     const image = req.body.imageFile as UploadedFile;
     const imageName = `${v4()}${path.extname(image.name)}`;
     const mvPromisify = promisify(image.mv).bind(image);

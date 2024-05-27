@@ -6,6 +6,7 @@ import vacationService from "../../../services/Vacation";
 import notifyService from "../../../services/Notify";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import noImage from '../../../assets/images/image-not-found.jpeg';
 
 interface vacationsCardsProps {
     vacation: VacationModel
@@ -37,7 +38,15 @@ function EditCards(props: vacationsCardsProps): JSX.Element {
                         <button className="Delete" onClick={() => setShowDelete(true)}><i className="bi bi-trash3"></i>
                             Delete</button>
                     </div>
-                    <img src={props.vacation.imageUrl} className="cardImage" alt=""></img>
+                    <img
+                        src={props.vacation.imageUrl ? props.vacation.imageUrl : noImage}
+                        className="cardImage"
+                        alt="Vacation Image"
+                        onError={(e) => {
+                            const image = e.target as HTMLImageElement;
+                            image.src = noImage;
+                        }}
+                    />
                     <div className="EditCardName">{props.vacation.destination}</div>
                     <div className="EditCardDates"><i className="bi bi-calendar2-minus"></i>{props.vacation.startDate && formatDate(props.vacation.startDate)} - {props.vacation.endDate && formatDate(props.vacation.endDate)}</div>
                 </div>

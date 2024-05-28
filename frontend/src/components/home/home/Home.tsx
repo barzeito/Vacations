@@ -6,7 +6,6 @@ import Cards from "../cards/Cards";
 import VacationModel from "../../../models/VacationModel";
 import vacationService from "../../../services/Vacation";
 import { vacationsStore } from "../../../redux/VacationState";
-import followService from "../../../services/Follow";
 import { jwtDecode } from "jwt-decode";
 import Pagination from "../Pagination/Pagination";
 import Spinner from "../../common/spinner/spinner";

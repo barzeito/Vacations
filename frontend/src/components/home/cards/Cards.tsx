@@ -132,7 +132,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
             return unsubscribe;
         }
         followCounter();
-    }, [])
+    }, [props.vacation.vacationId])
 
     return (
         <div className="Cards">
@@ -146,7 +146,7 @@ function Cards(props: vacationsCardsProps): JSX.Element {
                     <img
                         src={props.vacation.imageUrl ? props.vacation.imageUrl : noImage}
                         className="cardImage"
-                        alt="Vacation Image"
+                        alt="Vacation"
                         onError={(e) => {
                             const image = e.target as HTMLImageElement;
                             image.src = noImage;

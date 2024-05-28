@@ -13,6 +13,7 @@
     border: 1px solid var(--primary);
     text-decoration: none;
     margin: 0 5px;
+    border-radius: 25px;
 }
 
 .page-link:hover {

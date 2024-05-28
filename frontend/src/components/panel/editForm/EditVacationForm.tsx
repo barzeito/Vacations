@@ -12,7 +12,7 @@ function EditVacationPanel(): JSX.Element {
     const vacationId = String(params.vacationId);
 
     const [src, setSrc] = useState<string>('');
-    const { handleSubmit, setValue, register, control, formState } = useForm<VacationModel>();
+    const { handleSubmit, setValue, register, control, formState, getValues } = useForm<VacationModel>();
     const navigate = useNavigate();
 
     function ImageWatched({ control }: { control: Control<VacationModel> }) {
@@ -103,6 +103,16 @@ function EditVacationPanel(): JSX.Element {
                     required: {
                         value: true,
                         message: 'End Date can\'t be empty.'
+                    },
+                    validate: {
+                        dateCheck: value => {
+                            const startDateValue = getValues('startDate');
+                            if (!startDateValue) return 'Start date is required.';
+                            if (!value) return 'End date is required.';
+                            const startDate = new Date(startDateValue);
+                            const endDate = new Date(value);
+                            return endDate > startDate || 'End date must be after the start date.';
+                        }
                     }
                 })} /><span>{formState.errors.endDate?.message}</span>
 

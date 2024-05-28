@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function AddVacation(): JSX.Element {
 
-    const { register, handleSubmit, setValue, formState } = useForm<VacationModel>();
+    const { register, handleSubmit, setValue, formState, getValues } = useForm<VacationModel>();
     const navigate = useNavigate();
 
     async function submitVacation(vacation: VacationModel) {
@@ -59,6 +59,14 @@ function AddVacation(): JSX.Element {
                         required: {
                             value: true,
                             message: 'Start Date can\'t be empty.'
+                        },
+                        validate: {
+                            dateCheck: value => {
+                                if (!value) return 'Start date is required.';
+                                const date = new Date(value);
+                                const today = new Date();
+                                return date >= today || 'Start date cannot be in the past or today.';
+                            }
                         }
                     })} /><span>{formState.errors.startDate?.message}</span>
 
@@ -67,6 +75,16 @@ function AddVacation(): JSX.Element {
                         required: {
                             value: true,
                             message: 'End Date can\'t be empty.'
+                        },
+                        validate: {
+                            dateCheck: value => {
+                                const startDateValue = getValues('startDate');
+                                if (!startDateValue) return 'Start date is required.';
+                                if (!value) return 'End date is required.';
+                                const startDate = new Date(startDateValue);
+                                const endDate = new Date(value);
+                                return endDate > startDate || 'End date must be after the start date.';
+                            }
                         }
                     })} /><span>{formState.errors.endDate?.message}</span>
 

@@ -41,7 +41,7 @@ function EditCards(props: vacationsCardsProps): JSX.Element {
                     <img
                         src={props.vacation.imageUrl ? props.vacation.imageUrl : noImage}
                         className="cardImage"
-                        alt="Vacation Image"
+                        alt="Vacation"
                         onError={(e) => {
                             const image = e.target as HTMLImageElement;
                             image.src = noImage;

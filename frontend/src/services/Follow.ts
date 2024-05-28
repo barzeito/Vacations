@@ -2,7 +2,6 @@ import axios from "axios";
 import appConfig from "../utils/AppConfig";
 import FollowModel from "../models/FollowModel";
 import { FollowAction, FollowActionType, followStore } from "../redux/FollowState";
-import VacationModel from "../models/VacationModel";
 
 class FollowService {
 

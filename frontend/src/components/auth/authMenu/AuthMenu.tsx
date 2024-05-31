@@ -69,9 +69,7 @@ function AuthMenu(): JSX.Element {
             </div>
 
             <div className={`MenuItems ${menuOpen ? "open" : ""}`}>
-                {!user ?
-                    <div></div>
-                    :
+                {user &&
                     <div className="User">
                         <div className="UserHello">
                             <span className="Title">Hello, {user.firstName} {user.lastName}</span>

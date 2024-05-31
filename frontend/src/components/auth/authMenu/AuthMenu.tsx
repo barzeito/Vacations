@@ -70,15 +70,12 @@ function AuthMenu(): JSX.Element {
 
             <div className={`MenuItems ${menuOpen ? "open" : ""}`}>
                 {!user ?
-                    <div className="Guest">
-                        <span className="Title">Hello Guest |</span>
-                        <NavLink to="/signup" onClick={() => setMenuOpen(false)}>Sign Up</NavLink>
-                        <span className="Title"> | </span>
-                        <NavLink to="/login" onClick={() => setMenuOpen(false)}>Login</NavLink>
-                    </div>
+                    <div></div>
                     :
                     <div className="User">
-                        <span className="Title">Hello {user.firstName} {user.lastName},</span>
+                        <div className="UserHello">
+                            <span className="Title">Hello, {user.firstName} {user.lastName}</span>
+                        </div>
                         <NavLink to="/"><div>Home </div></NavLink>
                         {isAdmin && <NavLink to="/panel"><div>Panel</div></NavLink>}
                         <NavLink to="/home" onClick={() => { logout(); setMenuOpen(false); }}><div>Logout</div></NavLink>

@@ -43,6 +43,7 @@ function Home(): JSX.Element {
 
         return unsubscribe;
     }, []);
+    
     // Filters Handler
     useEffect(() => {
         applyFilter();

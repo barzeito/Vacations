@@ -25,7 +25,6 @@ function Login(): JSX.Element {
     useEffect(() => {
         const token = authStore.getState().token;
         if (token) {
-            notifyService.error('You are already logged in!')
             navigate('/home');
         }
     })

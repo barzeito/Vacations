@@ -13,8 +13,6 @@ import path from "path";
 import stripTags from "./middlewares/strip-tags";
 import { rateLimit } from 'express-rate-limit'
 
-//TODO: validation for vacation add/update/patch
-//TODO: Fix getFollows, followsCounter
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,

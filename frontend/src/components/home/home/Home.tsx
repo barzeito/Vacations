@@ -39,76 +39,43 @@ function Home(): JSX.Element {
 
         const unsubscribe = vacationsStore.subscribe(() => {
             setVacations([...vacationsStore.getState().vacations])
-        })
+        });
 
         return unsubscribe;
     }, []);
+    // Filters Handler
+    useEffect(() => {
+        applyFilter();
+    }, [followingFilter, notStartedFilter, startedFilter, user]);
 
-    async function getAllByStartDateFilter() {
+    async function applyFilter() {
         try {
-            const date = new Date();
-            const todayDate = date.toISOString().slice(0, 10);
             let filteredVacations: VacationModel[] = [];
+            const todayDate = new Date().toISOString().slice(0, 10);
 
-            if (notStartedFilter) {
-                resetFilters();
-                setNotStartedFilter(false);
-            } else {
-                filteredVacations = await vacationService.getVacationByStartDate(todayDate);
-                setNotStartedFilter(true);
-                setStartedFilter(false);
-                setFollowingFilter(false);
-            }
-
-            setVacations(filteredVacations);
-            notifyService.success('Filter applied');
-        } catch (error) {
-            notifyService.error(error);
-        }
-    };
-
-    async function getAllByBetweenDatesFilter() {
-        try {
-            const date = new Date();
-            const todayDate = date.toISOString().slice(0, 10);
-            let filteredVacations: VacationModel[] = [];
-
-            if (startedFilter) {
-                resetFilters();
-                setStartedFilter(false);
-            } else {
-                filteredVacations = await vacationService.getVacationByBetweenDates(todayDate);
-                setStartedFilter(true);
-                setNotStartedFilter(false);
-                setFollowingFilter(false);
-            }
-
-            setVacations(filteredVacations);
-            notifyService.success('Filter applied');
-        } catch (error) {
-            notifyService.error(error);
-        }
-    };
-
-    async function getAllByFollowFilter() {
-        try {
             if (user) {
-                let filteredVacations: VacationModel[] = [];
-
                 if (followingFilter) {
-                    resetFilters();
-                    setFollowingFilter(false);
-                } else {
-                    filteredVacations = await vacationService.getVacationByFollow(user.userId);
-                    setFollowingFilter(true);
-                    setStartedFilter(false);
-                    setNotStartedFilter(false);
+                    const followingVacations = await vacationService.getVacationByFollow(user.userId);
+                    filteredVacations = [...filteredVacations, ...followingVacations];
                 }
-
-                setVacations(filteredVacations);
-                console.log(filteredVacations);
-                notifyService.success('Filter applied');
+                if (notStartedFilter) {
+                    const notStartedVacations = await vacationService.getVacationByStartDate(todayDate);
+                    filteredVacations = [...filteredVacations, ...notStartedVacations];
+                }
+                if (startedFilter) {
+                    const startedVacations = await vacationService.getVacationByBetweenDates(todayDate);
+                    filteredVacations = [...filteredVacations, ...startedVacations];
+                }
+                // If no filters are selected show all vacations
+                if (!followingFilter && !notStartedFilter && !startedFilter) {
+                    filteredVacations = await vacationService.getAll();
+                } else {
+                    // Remove vacation duplicates if more then 2 filters applied
+                    const vacationSet = new Set(filteredVacations.map(v => v.vacationId));
+                    filteredVacations = Array.from(vacationSet).map(id => filteredVacations.find(v => v.vacationId === id)!);
+                }
             }
+            setVacations(filteredVacations);
         } catch (error) {
             notifyService.error(error);
         }
@@ -127,6 +94,23 @@ function Home(): JSX.Element {
         }
     }
 
+    const handleFilterToggle = (filterType: string) => {
+        switch (filterType) {
+            case "following":
+                setFollowingFilter(!followingFilter);
+                break;
+            case "notStarted":
+                setNotStartedFilter(!notStartedFilter);
+                break;
+            case "started":
+                setStartedFilter(!startedFilter);
+                break;
+            default:
+                break;
+        }
+    };
+
+    // Pagination Handler
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -141,15 +125,15 @@ function Home(): JSX.Element {
             <div className="Filters">
                 <h4>Filters: </h4>
                 <label>
-                    <input type="checkbox" checked={followingFilter} onChange={getAllByFollowFilter} />
+                    <input type="checkbox" checked={followingFilter} onChange={() => handleFilterToggle("following")} />
                     Following Vacations
                 </label>
                 <label>
-                    <input type="checkbox" checked={notStartedFilter} onChange={getAllByStartDateFilter} />
+                    <input type="checkbox" checked={notStartedFilter} onChange={() => handleFilterToggle("notStarted")} />
                     Not Started Vacations
                 </label>
                 <label>
-                    <input type="checkbox" checked={startedFilter} onChange={getAllByBetweenDatesFilter} />
+                    <input type="checkbox" checked={startedFilter} onChange={() => handleFilterToggle("started")} />
                     Started Vacations
                 </label>
                 <button onClick={resetFilters}>Clear Filters</button>

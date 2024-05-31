@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2024 at 11:28 PM
+-- Generation Time: Jun 01, 2024 at 12:56 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,13 +39,14 @@ CREATE TABLE `followers` (
 --
 
 INSERT INTO `followers` (`userId`, `vacationId`) VALUES
+('d005e9ef-37d1-43ba-91d4-a79161c6a7c6', '412b5b71-ab99-4269-a2be-5792b4273d4a'),
 ('0598271f-0c91-4679-9640-3c1f933d437f', '412b5b71-ab99-4269-a2be-5792b4273d4a'),
-('0598271f-0c91-4679-9640-3c1f933d437f', '2242efa2-f4fd-46e2-bee8-d85b255cf168'),
-('0598271f-0c91-4679-9640-3c1f933d437f', '2242efa2-f4fd-46e2-bee8-d85b255cf168'),
-('0598271f-0c91-4679-9640-3c1f933d437f', '412b5b71-ab99-4269-a2be-5792b4273d4a'),
-('0598271f-0c91-4679-9640-3c1f933d437f', '2242efa2-f4fd-46e2-bee8-d85b255cf168'),
-('0598271f-0c91-4679-9640-3c1f933d437f', '2242efa2-f4fd-46e2-bee8-d85b255cf168'),
-('0598271f-0c91-4679-9640-3c1f933d437f', '412b5b71-ab99-4269-a2be-5792b4273d4a');
+('0598271f-0c91-4679-9640-3c1f933d437f', '881addd3-1ced-4723-9531-23fc2a0566e7'),
+('0598271f-0c91-4679-9640-3c1f933d437f', '9d6d15fa-186f-439c-8a93-3c0487d7ac9f'),
+('2ecde626-874a-4288-be35-21a24659ffc6', '412b5b71-ab99-4269-a2be-5792b4273d4a'),
+('0598271f-0c91-4679-9640-3c1f933d437f', '8d852bcd-a693-45f1-bd99-4e53898c0c25'),
+('0598271f-0c91-4679-9640-3c1f933d437f', '8443b2fe-2878-44cf-8fc8-202e1bb9eef1'),
+('0598271f-0c91-4679-9640-3c1f933d437f', 'c2837c2e-2895-4554-94da-0ad195a0ea57');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userId`, `firstName`, `lastName`, `email`, `password`, `roleId`) VALUES
-('0598271f-0c91-4679-9640-3c1f933d437f', 'Bar', 'Zeitony', 'barzeitony@gmail.com', 'a163dde4abcf270073d5b8d41c73cac8', 1);
+('0598271f-0c91-4679-9640-3c1f933d437f', 'Bar', 'Zeitony', 'barzeitony@gmail.com', 'a163dde4abcf270073d5b8d41c73cac8', 2),
+('2ecde626-874a-4288-be35-21a24659ffc6', 'nana', 'nana', 'nana@gmail.com', 'a163dde4abcf270073d5b8d41c73cac8', 1),
+('d005e9ef-37d1-43ba-91d4-a79161c6a7c6', 'User', 'User', 'user@gmail.com', 'a163dde4abcf270073d5b8d41c73cac8', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +104,7 @@ CREATE TABLE `vacations` (
   `startDate` date NOT NULL,
   `endDate` date NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -114,8 +117,8 @@ INSERT INTO `vacations` (`vacationId`, `destination`, `description`, `startDate`
 ('4c96b69d-de7a-4ca6-b6eb-8558bc4fb3f9', 'Paris, France', 'Experience the romance of Paris with its iconic landmarks such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral. Enjoy exquisite French cuisine and stroll along the Seine River.', '2024-05-07', '2024-05-22', 2500, 'af6e6abe-a160-471a-a0d1-059dcb903b5a.jpeg'),
 ('6b5fc8c1-a943-4c55-ac84-e3d9c4b10c50', 'Bali, Indonesia', 'Explore the serene beaches and lush landscapes of Bali. Immerse yourself in the vibrant culture and indulge in delicious local cuisine.', '2025-02-28', '2025-03-07', 1500, '53c1cf33-19d8-4d3c-97c5-9d82c542f36e.jpeg'),
 ('800ce066-52e5-46fd-a701-7cdcab1cbeb6', 'Rome, Italy', 'Immerse yourself in the rich history and culture of Rome, home to ancient ruins like the Colosseum and Roman Forum. Indulge in authentic Italian cuisine and gelato.', '2024-07-08', '2024-07-17', 1900, 'e24755f0-254a-4e73-b259-6f9b84ec05e4.jpeg'),
-('8443b2fe-2878-44cf-8fc8-202e1bb9eef1', 'Tokyo, Japan', 'Dive into the bustling metropolis of Tokyo with its blend of modernity and tradition. Visit ancient temples, indulge in delicious sushi, and experience vibrant street life.', '2024-04-01', '2024-04-29', 2200, '4fbf8cb2-3ef6-43fe-9425-70f11037613d.jpeg'),
-('881addd3-1ced-4723-9531-23fc2a0566e7', 'Phuket, Thailand', 'Relax on the golden sands of Phuket\'s beaches, enjoy snorkeling in clear waters, and explore the vibrant nightlife of Patong. Discover Buddhist temples and indulge in Thai cuisine.', '2024-11-30', '2024-12-31', 1600, '9c677f56-554f-4471-ac9e-372258bfd199.jpeg'),
+('8443b2fe-2878-44cf-8fc8-202e1bb9eef1', 'Tokyo, Japan', 'Dive into the bustling metropolis of Tokyo with its blend of modernity and tradition. Visit ancient temples, indulge in delicious sushi, and experience vibrant street life.', '2024-03-30', '2024-04-27', 2200, '4fbf8cb2-3ef6-43fe-9425-70f11037613d.jpeg'),
+('881addd3-1ced-4723-9531-23fc2a0566e7', 'Phuket, Thailand', 'Relax on the golden sands of Phuket\'s beaches, enjoy snorkeling in clear waters, and explore the vibrant nightlife of Patong. Discover Buddhist temples and indulge in Thai cuisine.', '2024-03-14', '2024-12-31', 1100, '9c677f56-554f-4471-ac9e-372258bfd199.jpeg'),
 ('8bfd86d1-3df2-4750-8a30-0dfca6eb86cb', 'Rio de Janeiro, Brazil', 'Experience the vibrant energy of Rio de Janeiro, with its famous Copacabana and Ipanema beaches, Christ the Redeemer statue, and colorful Carnival celebrations.', '2024-08-31', '2024-09-19', 1700, 'e6d0b30a-60c2-4da9-98e5-a233eefe9fa5.jpeg'),
 ('8d852bcd-a693-45f1-bd99-4e53898c0c25', 'Maldives', 'Relax in luxury at the stunning Maldives, known for its pristine beaches, crystal-clear waters, and overwater bungalows. Enjoy snorkeling, diving, and romantic sunset cruises.', '2024-04-02', '2024-05-14', 3000, '5bb0b66f-f150-437d-8d5d-54e2fcc4271a.jpeg'),
 ('b7ab1da2-70fe-47d2-ac51-5d68c06db8be', 'New York City, USA', 'Explore the iconic sights of the Big Apple, from Times Square and Central Park to the Statue of Liberty and Broadway theaters. Enjoy diverse cuisines and endless shopping opportunities.\n', '2024-05-31', '2024-06-29', 2000, 'adc3f1df-48de-4ce7-a7c8-ba6e07ecca9d.jpeg'),

@@ -6,12 +6,10 @@
     background-color: transparent;
     color: #fff;
     border-radius: 5px;
-}
-
-
-.AuthMenu .Guest {
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .AuthMenu .User {
@@ -20,18 +18,14 @@
 }
 
 .AuthMenu .UserHello {
-    position: fixed;
+    position: absolute;
     top: 10px;
     left: 10px;
-    padding: 10px;
-    z-index: 1;
 }
 
 .AuthMenu .Title {
-    margin-right: 10px;
     font-weight: 540;
 }
-
 
 .AuthMenu a {
     color: #fff;
@@ -42,7 +36,6 @@
 .AuthMenu a:hover {
     text-decoration: underline;
 }
-
 
 .BurgerMenu {
     display: none;
@@ -59,9 +52,8 @@
 
 .MenuItems {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    width: 300px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -77,6 +69,8 @@
         padding: 10px;
         border-radius: 5px;
         display: none;
+        flex-direction: column;
+        width: auto;
         z-index: 1000;
     }
 

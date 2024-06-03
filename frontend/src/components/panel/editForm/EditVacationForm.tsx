@@ -59,7 +59,6 @@ function EditVacationPanel(): JSX.Element {
             vacation.imageFile = (vacation.imageFile as unknown as FileList)[0];
             vacation.vacationId = vacationId;
             const updatedVacation = await vacationService.editVacation(vacation);
-            console.log(updatedVacation)
             notifyService.success(`updated ${updatedVacation.vacationId}`);
             console.log(`updated ${updatedVacation.vacationId}`)
             navigate('/panel/edit');
@@ -67,6 +66,7 @@ function EditVacationPanel(): JSX.Element {
             notifyService.error(error);
         }
     }
+
     return (
         <div className="EditVacationPanel">
             <h2>Edit Vacation</h2>
@@ -104,15 +104,13 @@ function EditVacationPanel(): JSX.Element {
                         value: true,
                         message: 'End Date can\'t be empty.'
                     },
-                    validate: {
-                        dateCheck: value => {
-                            const startDateValue = getValues('startDate');
-                            if (!startDateValue) return 'Start date is required.';
-                            if (!value) return 'End date is required.';
-                            const startDate = new Date(startDateValue);
-                            const endDate = new Date(value);
-                            return endDate > startDate || 'End date must be after the start date.';
-                        }
+                    validate: value => {
+                        const startDateValue = getValues('startDate');
+                        if (!startDateValue) return 'Start date is required.';
+                        if (!value) return 'End date is required.';
+                        const startDate = new Date(startDateValue);
+                        const endDate = new Date(value);
+                        return endDate > startDate || 'End date must be after the start date.';
                     }
                 })} /><span>{formState.errors.endDate?.message}</span>
 

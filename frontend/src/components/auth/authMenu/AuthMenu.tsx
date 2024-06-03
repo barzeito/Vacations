@@ -62,25 +62,25 @@ function AuthMenu(): JSX.Element {
 
     return (
         <div className="AuthMenu">
+            <div className="UserHello">
+                {user && <span className="Title">Hello, {user.firstName} {user.lastName}</span>}
+            </div>
             <div className="BurgerMenu" onClick={() => setMenuOpen(!menuOpen)}>
                 <div className={`BurgerLine ${menuOpen ? "open" : ""}`} />
                 <div className={`BurgerLine ${menuOpen ? "open" : ""}`} />
                 <div className={`BurgerLine ${menuOpen ? "open" : ""}`} />
             </div>
-
             <div className={`MenuItems ${menuOpen ? "open" : ""}`}>
-                {user &&
+                {user && (
                     <div className="User">
-                        <div className="UserHello">
-                            <span className="Title">Hello, {user.firstName} {user.lastName}</span>
-                        </div>
-                        <NavLink to="/"><div>Home </div></NavLink>
+                        <NavLink to="/"><div>Home</div></NavLink>
                         {isAdmin && <NavLink to="/panel"><div>Panel</div></NavLink>}
                         <NavLink to="/home" onClick={() => { logout(); setMenuOpen(false); }}><div>Logout</div></NavLink>
                     </div>
-                }
+                )}
             </div>
         </div>
+
     );
 }
 

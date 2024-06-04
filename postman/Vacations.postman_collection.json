@@ -1,0 +1,698 @@
+{
+	"info": {
+		"_postman_id": "ea4453cd-22b9-4a25-adcd-bf0fc96d9c17",
+		"name": "Vacations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32497130"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/0598271f-0c91-4679-9640-3c1f933d437f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"0598271f-0c91-4679-9640-3c1f933d437f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Vacations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Vacations By Page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA1OTgyNzFmLTBjOTEtNDY3OS05NjQwLTNjMWY5MzNkNDM3ZiIsImZpcnN0TmFtZSI6IkJhciIsImxhc3ROYW1lIjoiWmVpdG9ueSIsImVtYWlsIjoiYmFyemVpdG9ueUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImExNjNkZGU0YWJjZjI3MDA3M2Q1YjhkNDFjNzNjYWM4Iiwicm9sZUlkIjoyfSwiaWF0IjoxNzE1NjI2MzA2LCJleHAiOjE3MTU2MzcxMDZ9.-kM926VTjSbg01x_xXcA79RmIheovKb9L4xCX6XHlFY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/pages?page=1&perPage=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"pages"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "perPage",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Vacation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/412b5b71-ab99-4269-a2be-5792b4273d4a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"412b5b71-ab99-4269-a2be-5792b4273d4a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vacations By Start Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/start-date/2025-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"start-date",
+						"2025-01-01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vacations By End Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/between-dates",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"between-dates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vacations By User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA1OTgyNzFmLTBjOTEtNDY3OS05NjQwLTNjMWY5MzNkNDM3ZiIsImZpcnN0TmFtZSI6IkJhciIsImxhc3ROYW1lIjoiWmVpdG9ueSIsImVtYWlsIjoiYmFyemVpdG9ueUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImExNjNkZGU0YWJjZjI3MDA3M2Q1YjhkNDFjNzNjYWM4Iiwicm9sZUlkIjoyfSwiaWF0IjoxNzE1NjI2MzA2LCJleHAiOjE3MTU2MzcxMDZ9.-kM926VTjSbg01x_xXcA79RmIheovKb9L4xCX6XHlFY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "0598271f-0c91-4679-9640-3c1f933d437f",
+							"type": "text"
+						},
+						{
+							"key": "vacationId",
+							"value": "412b5b71-ab99-4269-a2be-5792b4273d4a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/follow/0598271f-0c91-4679-9640-3c1f933d437f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"follow",
+						"0598271f-0c91-4679-9640-3c1f933d437f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Folowers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/followers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Vacations Statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/followers/statistics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Followed Vacations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "0598271f-0c91-4679-9640-3c1f933d437f",
+							"type": "text"
+						},
+						{
+							"key": "vacationId",
+							"value": "412b5b71-ab99-4269-a2be-5792b4273d4a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/followers/follows/0598271f-0c91-4679-9640-3c1f933d437f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers",
+						"follows",
+						"0598271f-0c91-4679-9640-3c1f933d437f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vacation Follows Number",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "0598271f-0c91-4679-9640-3c1f933d437f",
+							"type": "text"
+						},
+						{
+							"key": "vacationId",
+							"value": "412b5b71-ab99-4269-a2be-5792b4273d4a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/followers/counter/412b5b71-ab99-4269-a2be-5792b4273d4a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers",
+						"counter",
+						"412b5b71-ab99-4269-a2be-5792b4273d4a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "isAdmin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"sdsd@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/role/0598271f-0c91-4679-9640-3c1f933d437f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"role",
+						"0598271f-0c91-4679-9640-3c1f933d437f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA1OTgyNzFmLTBjOTEtNDY3OS05NjQwLTNjMWY5MzNkNDM3ZiIsImZpcnN0TmFtZSI6IkJhciIsImxhc3ROYW1lIjoiWmVpdG9ueSIsImVtYWlsIjoiYmFyemVpdG9ueUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImExNjNkZGU0YWJjZjI3MDA3M2Q1YjhkNDFjNzNjYWM4Iiwicm9sZUlkIjoyfSwiaWF0IjoxNzE1MjAwMDU2LCJleHAiOjE3MTUyMTA4NTZ9.x9jMurvAhgioW3yh04TEtwSTRLs2-r5YXBafTSJGD84",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"destination\": \"Haifa\",\n    \"description\": \"Nice Place\",\n    \"startDate\": \"2024-03-20\",\n    \"endDate\": \"2024-03-20\",\n    \"price\": \"1000\",\n    \"image\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Vacation with image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "destination",
+							"value": "Phuket, Thailand",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Relax on the golden sands of Phuket's beaches, enjoy snorkeling in clear waters, and explore the vibrant nightlife of Patong. Discover Buddhist temples and indulge in Thai cuisine.",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "2024-12-01",
+							"type": "text"
+						},
+						{
+							"key": "endDate",
+							"value": "2025-01-01",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "1600",
+							"type": "text"
+						},
+						{
+							"key": "imageFile",
+							"type": "file",
+							"src": "/Users/bar-mac/Desktop/Project3/Vacations Images/Bali.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Barddd\",\n    \"lastName\": \"Ze\",\n    \"email\": \"mama@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"barzeitony@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Follower",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "0598271f-0c91-4679-9640-3c1f933d437f",
+							"type": "text"
+						},
+						{
+							"key": "vacationId",
+							"value": "412b5b71-ab99-4269-a2be-5792b4273d4a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/followers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Vacation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6IjA1OTgyNzFmLTBjOTEtNDY3OS05NjQwLTNjMWY5MzNkNDM3ZiIsImZpcnN0TmFtZSI6IkJhciIsImxhc3ROYW1lIjoiWmVpdG9ueSIsImVtYWlsIjoiYmFyemVpdG9ueUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImExNjNkZGU0YWJjZjI3MDA3M2Q1YjhkNDFjNzNjYWM4Iiwicm9sZUlkIjoyfSwiaWF0IjoxNzEyMTYzMTE2LCJleHAiOjE3MTIxNzM5MTZ9.qzwv417QArbONFK8kO-1DPntUi4aasi3QiJF5LzGs0U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/9d6d15fa-186f-439c-8a93-3c0487d7ac9f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"9d6d15fa-186f-439c-8a93-3c0487d7ac9f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Follower",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "0598271f-0c91-4679-9640-3c1f933d437f",
+							"type": "text"
+						},
+						{
+							"key": "vacationId",
+							"value": "412b5b71-ab99-4269-a2be-5792b4273d4a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/followers/0598271f-0c91-4679-9640-3c1f933d437f/412b5b71-ab99-4269-a2be-5792b4273d4a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers",
+						"0598271f-0c91-4679-9640-3c1f933d437f",
+						"412b5b71-ab99-4269-a2be-5792b4273d4a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Vacation[PUT]",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"destination\": \"Haifaa\",\n    \"description\": \"Nice Place\",\n    \"startDate\": \"2024-03-20 12:00:00.000\",\n    \"endDate\": \"2024-03-20 12:30:00.000\",\n    \"price\": \"1000\",\n    \"image\": \"nana\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Vacation[PATCH]",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/881addd3-1ced-4723-9531-23fc2a0566e7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"881addd3-1ced-4723-9531-23fc2a0566e7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

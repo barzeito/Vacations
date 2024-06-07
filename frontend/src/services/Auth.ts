@@ -40,7 +40,6 @@ class AuthService {
         try {
             const response = await axios.get(appConfig.isAdminUrl + `/${id}`);
             const isAdmin = response.data === true;
-            console.log("isAdmin:", isAdmin);
             return isAdmin;
         } catch (error) {
             throw error;

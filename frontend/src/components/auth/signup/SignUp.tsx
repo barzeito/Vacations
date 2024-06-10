@@ -34,7 +34,7 @@ function SignUp(): JSX.Element {
         <div className="SignUp">
             <div className="SignUpContainer">
                 <div className="SignUpForm">
-                    <h2>Sign Up</h2>
+                    <h2>Sign up</h2>
                     <form onSubmit={handleSubmit(submitUserData)}>
                         <label>First Name:</label>
                         <input type="text" placeholder="First Name" {...register('firstName', {
@@ -64,8 +64,9 @@ function SignUp(): JSX.Element {
                                 message: 'Password is required.'
                             },
                         })} /><span>{formState.errors.password?.message}</span>
-                        <button>Sign Up</button>
-                        <div className="account">Already have an account? <NavLink to={'/login'} className="link">Login</NavLink></div>
+                        <button>Sign up</button>
+                        <div className="account">Already have an account? </div>
+                        <div><NavLink to={'/login'} className="link">Login</NavLink></div>
                     </form>
                 </div>
             </div>

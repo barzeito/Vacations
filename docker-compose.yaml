@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   database:
-    container_name: vacations-database
+    # container_name: vacations-database
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
       - MYSQL_TCP_PORT=3306

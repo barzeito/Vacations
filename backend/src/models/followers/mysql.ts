@@ -66,7 +66,7 @@ class Followers implements Model {
         const countedFollows = (await query(`
             SELECT v.destination as Destination,
                    count(f.userId) as Followers
-            FROM   vacations AS V
+            FROM   vacations AS v
             LEFT JOIN followers AS f on f.vacationId = v.vacationId
             GROUP BY v.vacationId 
         `,));

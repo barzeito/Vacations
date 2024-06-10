@@ -9,7 +9,7 @@ export const addVacationValidator = Joi.object<DTO>({
     price: Joi.number().min(100).max(10000).positive().required(),
     imageFile: Joi.object({
         mimetype: Joi.string().valid('image/jpg', 'image/jpeg', 'image/png')
-    }).unknown(true).optional()
+    }).unknown(true).required()
 });
 
 export const putVacationValidator = addVacationValidator;

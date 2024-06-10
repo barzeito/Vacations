@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 export class AuthState {
     public token: string = '';
     public constructor() {
-        this.token = localStorage.getItem('token') || '';
+        this.token = localStorage.getItem('vToken') || '';
     }
 }
 
@@ -38,23 +38,22 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
         case AuthActionType.Signup:
         case AuthActionType.Login:
             newState.token = action.payload as string;
-            localStorage.setItem('token', newState.token);
+            localStorage.setItem('vToken', newState.token);
             break;
         case AuthActionType.Logout:
         case AuthActionType.TokenExpired:
             newState.token = '';
-            localStorage.removeItem('token');
+            localStorage.removeItem('vToken');
             break;
     }
 
     return newState;
 }
 
-
 // 5. store
 export const authStore = createStore(authReducer);
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('vToken');
 if (token && isTokenExpired(token)) {
     authStore.dispatch({
         type: AuthActionType.TokenExpired,

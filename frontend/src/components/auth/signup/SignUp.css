@@ -79,12 +79,15 @@
 
 /* Link Styles */
 .SignUpForm .link {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
     font-weight: 540;
-    color: white;
+    color: var(--secondary);
 }
 
 .SignUpForm .link:hover {
     text-decoration: underline;
     cursor: pointer;
+    scale: 1.1;
 }

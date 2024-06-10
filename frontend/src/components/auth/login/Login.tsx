@@ -50,7 +50,8 @@ function Login(): JSX.Element {
                             },
                         })} /><span>{formState.errors.password?.message}</span>
                         <button>Login</button>
-                        <div className="account">Don't have an account? <NavLink to={'/signup'} className="link">SignUp</NavLink></div>
+                        <div className="account">Don't have an account?</div>
+                        <div><NavLink to={'/signup'} className="link">Sign up now</NavLink></div>
                     </form>
                 </div>
                 <div className="LoginText">

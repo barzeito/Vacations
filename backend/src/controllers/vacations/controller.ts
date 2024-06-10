@@ -53,7 +53,7 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
             imageUrl: `${config.get<string>('app.protocol')}://${config.get<string>('app.host')}:${config.get<number>('app.port')}/images/${vacation.image}`
         }
         delete vacationWithImageUrl.image;
-        res.status(StatusCodes.CREATED).json(convertVacationToImageUrl);
+        res.status(StatusCodes.CREATED).json(convertVacationToImageUrl(vacationWithImageUrl));
     } catch (err) {
         next(err)
     }

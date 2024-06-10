@@ -48,12 +48,7 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
 export const add = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacation = await getModel().add(req.body);
-        const vacationWithImageUrl = {
-            ...vacation,
-            imageUrl: `${config.get<string>('app.protocol')}://${config.get<string>('app.host')}:${config.get<number>('app.port')}/images/${vacation.image}`
-        }
-        delete vacationWithImageUrl.image;
-        res.status(StatusCodes.CREATED).json(convertVacationToImageUrl(vacationWithImageUrl));
+        res.status(StatusCodes.CREATED).json(convertVacationToImageUrl(vacation));
     } catch (err) {
         next(err)
     }

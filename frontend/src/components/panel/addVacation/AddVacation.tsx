@@ -100,7 +100,13 @@ function AddVacation(): JSX.Element {
 
 
                     <label>Image:</label>
-                    <input type="file" accept="image/*" {...register('imageFile')} />
+                    <input type="file" accept="image/*" {...register('imageFile', {
+                        required: {
+                            value: true,
+                            message: 'Image can\'t be empty.'
+                        }
+                    })} /><span>{formState.errors.imageFile?.message}</span>
+
 
                     <button>Add Vacation</button>
 
